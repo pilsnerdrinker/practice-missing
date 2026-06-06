@@ -130,36 +130,13 @@
 .hardBossRing{z-index:1}
 .hardBossCore{z-index:2}
 .hardCenterLabel{z-index:2}
-.readmeLinkBox{
-  margin:10px 0 14px;
-}
 
-.readmeLinkBox a{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid rgba(143,211,255,.35);
-  background:rgba(143,211,255,.08);
-  color:#8fd3ff;
-  font-weight:900;
-  text-decoration:none;
-}
-
-.readmeLinkBox a:hover{
-  filter:brightness(1.12);
-}
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>ミッシング 1238/4567 通し練習</h1>
   <div class="sub">解法を <b>KT（りーん） / ヤーン式</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答えるプロトタイプです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
-  <div class="readmeLinkBox">
-    <a href="https://github.com/pilsnerdrinker/practice-missing#readme" target="_blank" rel="noopener noreferrer">
-    使い方・仕様（README）を見る </a>
-</div>
   <div class="grid">
     <section class="card">
       <div class="row"><span class="pill">ノーマル 完成版</span><span class="pill">KT（りーん） / ヤーン式 切替</span><span class="pill">塔/塔外役割 + 付与更新 + 過去未来 + 消滅の脚</span></div>
@@ -172,7 +149,7 @@
       <div class="timelineMini" id="timelineMini"><span class="tmini">1塔</span><span class="tmini">2塔→過去/未来</span><span class="tmini">3塔+消滅の脚</span><span class="tmini">4塔→過去/未来</span><span class="tmini">5塔+消滅の脚</span><span class="tmini">6塔→過去/未来</span><span class="tmini">7塔+消滅の脚</span><span class="tmini">8塔→過去/未来→消滅の脚</span></div>
       <div class="timeline" id="timeline"></div>
       <div class="hardPanel" id="hardPanel"></div>
-      <div class="btns" style="margin-top:14px"><button id="showBtn">正解を表示</button><button class="ghost hidden" id="resetHardTopBtn" onclick="resetHardRun()">最初から</button></div>
+      <div class="btns" style="margin-top:14px"><button class="primary" id="checkBtn">通し判定</button><button id="showBtn">正解を表示</button><button class="ghost hidden" id="resetHardTopBtn" onclick="resetHardRun()">最初から</button></div>
       <div class="result" id="result">初期マークを見て、1〜8回の動きを通しで選んでね。</div>
     </section>
     <aside class="card">
@@ -408,7 +385,12 @@ function expectedActionYaan(role, round){
     }
   } else {
     if(round%2===1){
-      return isSupport(role) ? "stack_left" : "stack_right";
+      // ヤーン式も塔外・奇数回はKT（りーん）と同じ処理にする。
+      // H1/H2 は左扇誘導、MT/ST は左頭割り、DPS は右頭割り。
+      // 以前は support 全員を左頭割りにしていたため、H1先組の5回目などが誤判定になっていた。
+      if(isHealer(role)) return "fan_left";
+      if(isTank(role)) return "stack_left";
+      return "stack_right";
     } else {
       if(isSupport(role)) return role.startsWith("H") ? "fan_left" : "inside_left";
       return isRanged(role) ? "fan_right" : "inside_right";
@@ -511,6 +493,8 @@ function renderControls(){
   if(mini) mini.classList.toggle("hidden", state.difficulty==="hard");
   const resetTop=document.getElementById("resetHardTopBtn");
   if(resetTop) resetTop.classList.toggle("hidden", state.difficulty!=="hard");
+  const checkTop=document.getElementById("checkBtn");
+  if(checkTop) checkTop.classList.toggle("hidden", state.difficulty==="hard");
 }
 function renderPlayers(){
   const box=document.getElementById("players"), p=state.problem, partner=partnerOf(state.role,p.method), first=new Set(p.firstRoles);
