@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ミッシング 1238/4567 通し練習</title>
+<style>
+:root{--panel:#171d2b;--panel2:#20283a;--text:#f3f6ff;--muted:#aeb8d0;--accent:#8fd3ff;--good:#71e39b;--bad:#ff7a8a;--warn:#ffd166;--line:#3b465f;--purple:#b58cff;--orange:#ffb86b;--cyan:#75d7ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);background:radial-gradient(circle at top,#22304a 0,#0f1420 48%,#080b12 100%);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1240px;margin:0 auto;padding:22px 14px 42px}h1{font-size:clamp(22px,4vw,34px);margin:4px 0 6px}.sub{color:var(--muted);line-height:1.75;margin-bottom:14px}.grid{display:grid;grid-template-columns:1.08fr .92fr;gap:14px}@media(max-width:930px){.grid{grid-template-columns:1fr}}.card{background:rgba(23,29,43,.95);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px;box-shadow:0 14px 36px rgba(0,0,0,.28)}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 10px;border-radius:999px;background:var(--panel2);border:1px solid rgba(255,255,255,.08);color:var(--muted);font-size:14px}button{border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:11px 12px;background:var(--panel2);color:var(--text);font-weight:850;cursor:pointer;font-size:15px}button:hover{filter:brightness(1.1)}button.active,.selected{outline:3px solid var(--accent);background:#213655}button.correct{outline:3px solid var(--good);background:rgba(113,227,155,.14)}button.wrong{outline:3px solid var(--bad);background:rgba(255,122,138,.14)}.primary{background:linear-gradient(135deg,#4f8cff,#72d6ff);color:#07111f}.ghost{background:transparent;border-color:var(--line);color:var(--muted)}.ctrl{display:grid;grid-template-columns:96px 1fr;gap:10px;align-items:center;margin-top:10px}.ctrlLabel{color:var(--muted);font-size:13px;font-weight:800}.btns{display:flex;gap:8px;flex-wrap:wrap}.players{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}@media(max-width:620px){.players{grid-template-columns:repeat(2,1fr)}}.player{border:1px solid var(--line);border-radius:14px;padding:9px;background:#101827;min-height:78px}.player.me{outline:3px solid var(--accent)}.player.partner{outline:3px solid rgba(190,198,214,.42);box-shadow:0 0 0 2px rgba(190,198,214,.14)}.role{font-size:17px;font-weight:900;margin-bottom:5px}.mark{display:inline-flex;align-items:center;justify-content:center;min-width:58px;padding:5px 8px;border-radius:999px;font-size:13px;font-weight:900}.mark.stack{background:rgba(117,215,255,.16);border:1px solid rgba(117,215,255,.6);color:#dff7ff}.mark.circle{background:rgba(255,184,107,.16);border:1px solid rgba(255,184,107,.6);color:#ffe7c8}.mark.fan{background:rgba(181,140,255,.16);border:1px solid rgba(181,140,255,.6);color:#efe3ff}.meta{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.45}.timeline{margin-top:14px;display:grid;gap:10px}.step{border:1px solid var(--line);border-radius:16px;background:#101827;padding:12px}.stepHeader{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px}.stepTitle{font-weight:950}.stepNote{font-size:12px;color:var(--muted)}.castLine{margin:8px 0 10px;padding:8px 10px;border-radius:12px;background:rgba(143,211,255,.08);border:1px solid rgba(143,211,255,.28);font-size:13px;color:#dff4ff;font-weight:850}.choiceGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.actionGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}.actionGrid button{font-size:13px;padding:10px 8px}.actionSectionTitle{font-size:12px;color:var(--muted);font-weight:900;margin-top:10px;margin-bottom:4px}@media(max-width:600px){.choiceGrid,.actionGrid{grid-template-columns:1fr}}.result{min-height:58px;padding:12px;border-radius:14px;background:#101827;border:1px solid var(--line);margin-top:12px;line-height:1.55;color:var(--muted)}.result.good{color:#d9ffe5;border-color:rgba(113,227,155,.55);background:rgba(113,227,155,.08)}.result.bad{color:#ffe1e6;border-color:rgba(255,122,138,.55);background:rgba(255,122,138,.08)}.stat{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.stat div{background:#101827;border:1px solid var(--line);border-radius:14px;padding:10px;text-align:center}.stat b{display:block;font-size:24px}.stat span{font-size:12px;color:var(--muted)}details{margin-top:14px;color:var(--muted);line-height:1.7}summary{cursor:pointer;color:var(--text);font-weight:900}.small{font-size:13px;color:var(--muted);line-height:1.7}.timelineMini{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.tmini{border:1px solid var(--line);background:#101827;border-radius:999px;padding:6px 9px;font-size:12px;color:var(--muted)}.marksBox{margin-top:10px;padding:10px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08)}.marksTitle{font-size:12px;color:var(--muted);font-weight:800;margin-bottom:6px}.markList{display:flex;gap:6px;flex-wrap:wrap}.markChip{display:inline-flex;align-items:center;gap:5px;padding:4px 7px;border-radius:999px;background:#0d1421;border:1px solid var(--line);font-size:12px;font-weight:800}.markChip .r{opacity:.9}.markArrow{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.6}.diagramWrap{display:grid;grid-template-columns:1fr 40px 1fr;gap:10px;align-items:center;margin-top:10px}.diagramArrow{display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:900;font-size:22px}.miniArena{padding:10px;border-radius:12px;background:#0d1421;border:1px solid rgba(255,255,255,.08)}.miniArenaTitle{font-size:12px;color:var(--muted);font-weight:800;margin-bottom:8px}.miniArenaGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.miniSpot{position:relative;display:flex;flex-direction:column;align-items:center;min-height:88px;justify-content:flex-end}.markFloat{position:absolute;top:0;left:50%;transform:translateX(-50%);white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;min-width:46px;padding:3px 7px;border-radius:999px;font-size:11px;font-weight:900}.markFloat.stack{background:rgba(117,215,255,.16);border:1px solid rgba(117,215,255,.6);color:#dff7ff}.markFloat.circle{background:rgba(255,184,107,.16);border:1px solid rgba(255,184,107,.6);color:#ffe7c8}.markFloat.fan{background:rgba(181,140,255,.16);border:1px solid rgba(181,140,255,.6);color:#efe3ff}.miniHead{width:18px;height:18px;border-radius:50%;background:#dde8ff;border:2px solid #f7fbff;margin-top:22px;box-shadow:0 0 0 2px rgba(143,211,255,.15)}.miniBody{margin-top:4px;padding:6px 8px;border-radius:10px;background:#1a2437;border:1px solid var(--line);font-size:12px;font-weight:900;min-width:44px;text-align:center}.miniSub{margin-top:6px;font-size:11px;color:var(--muted);text-align:center;line-height:1.35}.hardOnly{display:none}.hardPanel{margin-top:14px}.hardStage{border:1px solid var(--line);border-radius:16px;background:#101827;padding:12px}.hardHeader{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}.hardTitle{font-weight:950}.hardProgress{font-size:12px;color:var(--muted)}.hardArena{position:relative;width:min(100%,520px);aspect-ratio:1/1;margin:10px auto 0;border:2px solid rgba(255,255,255,.35);border-radius:50%;background:radial-gradient(circle at center,rgba(143,211,255,.10),rgba(255,255,255,.02) 56%,rgba(255,255,255,0));overflow:hidden}.hardArena::before{content:"";position:absolute;left:50%;top:8%;bottom:8%;width:1px;background:rgba(255,255,255,.08)}.hardArena::after{content:"";position:absolute;top:50%;left:8%;right:8%;height:1px;background:rgba(255,255,255,.08)}.hardBoss{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:9px 11px;background:rgba(15,20,32,.82);font-size:13px;color:var(--muted);z-index:2}.hardPos{position:absolute;transform:translate(-50%,-50%);border:2px solid rgba(255,255,255,.2);background:rgba(32,40,58,.92);color:var(--text);border-radius:999px;min-width:74px;min-height:42px;padding:7px 9px;font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.25}.hardPos:hover{border-color:var(--accent);filter:brightness(1.1)}.hardPos.selected{outline:3px solid var(--accent);background:#213655}.hardPos.correct{outline:3px solid var(--good);background:rgba(113,227,155,.18)}.hardPos.wrong{outline:3px solid var(--bad);background:rgba(255,122,138,.16)}.hardResult{min-height:42px;margin-top:10px;padding:10px;border-radius:12px;border:1px solid var(--line);color:var(--muted);background:#0d1421;line-height:1.5}.hardResult.good{color:#d9ffe5;border-color:rgba(113,227,155,.55);background:rgba(113,227,155,.08)}.hardResult.bad{color:#ffe1e6;border-color:rgba(255,122,138,.55);background:rgba(255,122,138,.08)}.hardControls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.hardMini{font-size:12px;color:var(--muted);line-height:1.6;margin-top:6px}@media(max-width:760px){.diagramWrap{grid-template-columns:1fr}.diagramArrow{transform:rotate(90deg);height:22px}.miniArenaGrid{grid-template-columns:repeat(2,1fr)}}
+
+/* hard diagram v3 overrides */
+.hardPanel{margin-top:14px}
+.hardStage{border:1px solid var(--line);border-radius:16px;background:#101827;padding:12px}
+.hardHeader{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:10px}
+.hardTitle{font-weight:950}.hardProgress{font-size:12px;color:var(--muted)}
+.hardArena{
+  position:relative;
+  width:min(100%,820px);
+  aspect-ratio:4/3;
+  margin:10px auto 0;
+  border:1px solid #33435f;
+  border-radius:14px;
+  background:
+    linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.035) 75%),
+    linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.035) 75%),
+    #0b111d;
+  background-size:20px 20px;
+  background-position:0 0,10px 10px;
+  overflow:hidden;
+}
+.hardArena::before,.hardArena::after{display:none}
+.hardTower{
+  position:absolute;
+  width:25%;
+  aspect-ratio:1/1;
+  border:3px solid rgba(255,255,255,.82);
+  border-radius:50%;
+  background:rgba(255,255,255,.025);
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hardTower.left{left:27%;top:67%}
+.hardTower.right{left:73%;top:67%}
+.hardBossRing{
+  position:absolute;
+  width:34%;
+  aspect-ratio:1/1;
+  border:3px solid rgba(255,80,80,.95);
+  border-radius:50%;
+  background:rgba(255,50,50,.035);
+  left:50%;
+  top:34%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hardBossCore{
+  position:absolute;
+  width:42px;
+  height:26px;
+  border-radius:999px;
+  background:#19d937;
+  left:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  box-shadow:0 0 16px rgba(25,217,55,.35);
+}
+.hardBossCore.top{top:25.5%}
+.hardBossCore.bottom{top:47%}
+.hardCenterLabel{
+  position:absolute;
+  left:50%;
+  top:61%;
+  transform:translate(-50%,-50%);
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(10,14,23,.7);
+  color:var(--muted);
+  border-radius:999px;
+  padding:4px 10px;
+  font-size:12px;
+  pointer-events:none;
+}
+.hardPos{
+  position:absolute;
+  transform:translate(-50%,-50%);
+  border:3px solid #32e653;
+  background:rgba(255,255,255,.045);
+  color:transparent;
+  border-radius:50%;
+  width:28px;
+  height:28px;
+  min-width:0;
+  min-height:0;
+  padding:0;
+  font-size:0;
+  display:block;
+  z-index:3;
+}
+.hardPos:hover{filter:brightness(1.16);transform:translate(-50%,-50%) scale(1.12)}
+.hardPos.selected{outline:4px solid rgba(255,210,74,.95);background:rgba(255,210,74,.18)}
+.hardPos.correct{background:#25d94a;border-color:#dfffe7;outline:4px solid rgba(113,227,155,.55)}
+.hardPos.wrong{background:#d94154;border-color:#ffd7dd;outline:4px solid rgba(255,122,138,.55)}
+.hardPointLabel{
+  position:absolute;
+  left:50%;
+  top:-27px;
+  transform:translateX(-50%);
+  white-space:nowrap;
+  font-size:11px;
+  line-height:1.2;
+  color:#eaf4ff;
+  font-weight:900;
+  text-shadow:0 1px 4px #000;
+  pointer-events:none;
+}
+.hardPos.showLabel{color:transparent}
+.hardResult{min-height:42px;margin-top:10px;padding:10px;border-radius:12px;border:1px solid var(--line);color:var(--muted);background:#0d1421;line-height:1.5}
+.hardResult.good{color:#d9ffe5;border-color:rgba(113,227,155,.55);background:rgba(113,227,155,.08)}
+.hardResult.bad{color:#ffe1e6;border-color:rgba(255,122,138,.55);background:rgba(255,122,138,.08)}
+.hardControls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.hardMini{font-size:12px;color:var(--muted);line-height:1.6;margin-top:6px}
+
+
+/* visibility fixes for hard position map */
+.hidden{display:none !important}
+.hardOnly.hardPanel{display:block}
+.hardOnly.hardPanel.hidden{display:none !important}
+.hardArena{display:block !important}
+.hardTower,.hardBossRing,.hardBossCore,.hardCenterLabel{display:block !important}
+.hardTower{z-index:1}
+.hardBossRing{z-index:1}
+.hardBossCore{z-index:2}
+.hardCenterLabel{z-index:2}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ミッシング 1238/4567 通し練習</h1>
+  <div class="sub">解法を <b>KT（りーん） / ヤーン式</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答えるプロトタイプです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
+  <div class="grid">
+    <section class="card">
+      <div class="row"><span class="pill">ノーマル 完成版</span><span class="pill">KT（りーん） / ヤーン式 切替</span><span class="pill">塔/塔外役割 + 付与更新 + 過去未来 + 消滅の脚</span></div>
+      <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）</button><button class="methodBtn" data-method="yaan">ヤーン式</button></div></div>
+      <div class="ctrl"><div class="ctrlLabel">難易度</div><div class="btns"><button class="difficultyBtn" data-difficulty="normal">ノーマル</button><button class="difficultyBtn" data-difficulty="hard">ハード</button></div></div>
+      <div class="ctrl"><div class="ctrlLabel">自分</div><div class="btns" id="roleBtns"></div></div>
+      <div class="btns" style="margin-top:12px"><button class="primary" id="newBtn">新しい問題</button><button class="ghost" id="retryBtn">同じ問題をやり直す</button></div>
+      <div class="small" style="margin-top:8px;">最初のマーク（下の8人カードが今回の初期状態です）</div>
+      <div class="players" id="players"></div>
+      <div class="timelineMini" id="timelineMini"><span class="tmini">1塔</span><span class="tmini">2塔→過去/未来</span><span class="tmini">3塔+消滅の脚</span><span class="tmini">4塔→過去/未来</span><span class="tmini">5塔+消滅の脚</span><span class="tmini">6塔→過去/未来</span><span class="tmini">7塔+消滅の脚</span><span class="tmini">8塔→過去/未来→消滅の脚</span></div>
+      <div class="timeline" id="timeline"></div>
+      <div class="hardPanel" id="hardPanel"></div>
+      <div class="btns" style="margin-top:14px"><button id="showBtn">正解を表示</button><button class="ghost hidden" id="resetHardTopBtn" onclick="resetHardRun()">最初から</button></div>
+      <div class="result" id="result">初期マークを見て、1〜8回の動きを通しで選んでね。</div>
+    </section>
+    <aside class="card">
+      <h2 style="font-size:18px;margin:0 0 8px">成績</h2>
+      <div class="stat"><div><b id="total">0</b><span>回答</span></div><div><b id="ok">0</b><span>全問正解</span></div><div><b id="ng">0</b><span>ミスあり</span></div><div><b id="rate">0%</b><span>正答率</span></div></div>
+      <button class="ghost" id="resetBtn" style="margin-top:10px;width:100%">成績リセット</button>
+      <details open><summary>この版で判定していること</summary><div class="small"><p><b>塔担当：</b>先組は1/2/3/8、後組は4/5/6/7。</p><p><b>回答形式：</b>全員が常に役割を持ちます。左塔・上 / 右塔・上 / 左塔・下 / 右塔・下 の塔踏み、左右頭割り、左右扇誘導、ボス左上/右上での誘導などから選びます。</p><p><b>過去/未来の終焉：</b>偶数回後に近い4人へ円範囲。想定する4人は、<b>タゲサ内の左上/右上に入るタンク・近接</b> と、<b>左右の上側で塔を踏む2人</b> です。</p><p><b>消滅の脚：</b>「自分が塔側/塔の逆側へ避ける」ではなく、ボスの向きを塔側/塔の逆側に誘導して、塔側に半面が来ないようにします。</p><p><b>向き誘導：</b>過去の終焉ならボスを塔側へ向ける、未来の終焉ならボスを塔の逆側へ向ける想定です。</p><p><b>同時処理：</b>消滅の脚そのものは奇数回の塔処理と同時ですが、<b>8人でのボス向き誘導はその前、直前の偶数回の最後に行う</b> 想定で出題します。</p></div></details>
+      <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）の組分けルールで先組/後組に分かれます。</p><p><b>ヤーン式：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。</p><p><b>ヤーン式の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
+      <details><summary>ギミック共通メモ</summary><div class="small"><p>塔を踏むと、その人の現在の表示パターンの攻撃が発動し、<b>踏んだ4人だけ</b> 次回用の表示に張り替わります。</p><p><b>奇数回</b>に踏んだ4人は、次回用に <b>円2・扇2</b> がランダムで付きます。</p><p><b>偶数回</b>に踏んだ4人は、次回用に <b>頭割り2・円1・扇1</b> がランダムで付きます。</p><p>この版では、そのランダム付与内容も各回の下に表示します。</p><p>偶数塔後は、過去/未来の終焉の円範囲誘導を行い、そのまま次の奇数回に向けたボス向き誘導（消滅の脚用）を先に処理します。</p></div></details>
+    </aside>
+  </div>
+</div>
+<script>
+
+const ROLES=["MT","ST","H1","H2","D1","D2","D3","D4"];
+const DISPLAY_ROLES=["MT","H1","D1","D3","ST","H2","D2","D4"];
+const MARKS={stack:{label:"頭割り",cls:"stack"},circle:{label:"円",cls:"circle"},fan:{label:"扇",cls:"fan"}};
+const ACTIONS=[
+ {key:"tower_left_north",label:"左塔・上を踏む",type:"tower"},
+ {key:"tower_right_north",label:"右塔・上を踏む",type:"tower"},
+ {key:"tower_left_south",label:"左塔・下を踏む",type:"tower"},
+ {key:"tower_right_south",label:"右塔・下を踏む",type:"tower"},
+ {key:"stack_left",label:"左頭割りに入る",type:"notower"},
+ {key:"stack_right",label:"右頭割りに入る",type:"notower"},
+ {key:"fan_left",label:"左扇を誘導",type:"notower"},
+ {key:"fan_right",label:"右扇を誘導",type:"notower"},
+ {key:"inside_left",label:"ボス左上で誘導",type:"notower"},
+ {key:"inside_right",label:"ボス右上で誘導",type:"notower"},
+ {key:"bait_left_upper",label:"過去未来誘導：左上",type:"bait"},
+ {key:"bait_right_upper",label:"過去未来誘導：右上",type:"bait"},
+];
+
+const HARD_ACTIONS = {
+  // 塔踏み：4点とも白い塔円のぎりぎり内側に収める
+  tower_left_north:{label:"左塔・上",x:34,y:58},
+  tower_right_north:{label:"右塔・上",x:66,y:58},
+  tower_left_south:{label:"左塔・下",x:20,y:78},
+  tower_right_south:{label:"右塔・下",x:80,y:78},
+
+  // 頭割り：塔とボスタゲサの間寄り
+  stack_left:{label:"左頭割り",x:38,y:51},
+  stack_right:{label:"右頭割り",x:62,y:51},
+
+  // 扇誘導：上下寄せが分かるように外側へ
+  fan_left_upper:{label:"左上扇誘導",x:24,y:48.8},
+  fan_left_lower:{label:"左下扇誘導",x:14,y:87},
+  fan_right_upper:{label:"右上扇誘導",x:76,y:48},
+
+  // 過去/未来の円範囲誘導：ボスタゲサ内の上側
+  inside_left:{label:"ボス左上",x:40,y:18},
+  inside_right:{label:"ボス右上",x:60,y:18},
+
+  // 消滅の脚誘導：上が塔の逆、下が塔側
+  safe_opposite:{label:"脚：塔の逆へ",x:50,y:25.5},
+  safe_tower:{label:"脚：塔側へ",x:50,y:45}
+};
+const state={
+  method:localStorage.getItem("missingMethod")||"kt",
+  difficulty:localStorage.getItem("missingDifficulty")||"normal",
+  hardStep:0,
+  hardSelected:null,
+  hardChecked:false,
+  hardHistory:[],
+  role:localStorage.getItem("missingRole")||"MT",
+  problem:null,
+  answers:{},
+  stats:JSON.parse(localStorage.getItem("missingNormalCombinedStats")||'{"total":0,"ok":0,"ng":0}')
+};
+
+function pairsFor(method){
+  return method==="yaan" ? [["MT","H1"],["ST","H2"],["D1","D3"],["D2","D4"]] : [["MT","ST"],["H1","H2"],["D1","D2"],["D3","D4"]];
+}
+function partnerOf(role,method){const pair=pairsFor(method).find(p=>p.includes(role));return pair.find(x=>x!==role);}
+function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function randomMarksForRound(round){return shuffle(round%2===1?["circle","circle","fan","fan"]:["stack","stack","circle","fan"]);}
+function isTank(r){return r==="MT"||r==="ST";} function isHealer(r){return r==="H1"||r==="H2";} function isMelee(r){return r==="D1"||r==="D2";} function isRanged(r){return r==="D3"||r==="D4";} function isSupport(r){return isTank(r)||isHealer(r);} function isDps(r){return isMelee(r)||isRanged(r);}
+function oddStackPrio(r){return ["H1","H2","MT","ST","D1","D2","D3","D4"].indexOf(r);} // 左寄せ優先
+function yaanPrio(r){return ["H1","H2","MT","ST","D1","D2","D3","D4"].indexOf(r);} 
+function resolveYaanSides(roles){const sorted=[...roles].sort((a,b)=>yaanPrio(a)-yaanPrio(b));return {left:sorted[0], right:sorted[1]};}
+function actionLabel(key){const a=ACTIONS.find(x=>x.key===key);return a?a.label:"未選択";}
+function actionType(key){const a=ACTIONS.find(x=>x.key===key);return a?a.type:null;}
+function actionButton(actionKey, selectedKey, round){const a=ACTIONS.find(x=>x.key===actionKey);return `<button class="${selectedKey===actionKey?'selected':''}" onclick="setAnswer('action${round}','${actionKey}')">${a.label}</button>`;}
+function endLabel(e){return e==="past"?"過去の終焉":"未来の終焉";}
+function faceSideFor(e){return e==="past"?"tower":"opposite";} // どちらへ向けるか
+function halfSideLabel(e){return e==="past"?"塔の逆側":"塔側";} // 半面攻撃が来る側
+function sideLabel(s){return s==="tower"?"塔側":s==="opposite"?"塔の逆側":s;}
+function markChip(role,markKey){const mark=MARKS[markKey];return `<span class="markChip"><span class="r">${role}</span><span class="mark ${mark.cls}" style="min-width:auto;padding:2px 8px;font-size:11px">${mark.label}</span></span>`;}
+function marksSummary(map, roles){return roles.map(r=>markChip(r,map[r])).join("");}
+function orderRolesForDisplay(roles){
+  const MARK_CHANGE_ORDER = ["H1","H2","MT","ST","D1","D2","D3","D4"];
+  return MARK_CHANGE_ORDER.filter(r=>roles.includes(r));
+}
+function towerDiagramHTML(title,map,roles){const ordered=orderRolesForDisplay(roles);return `<div class="miniArena"><div class="miniArenaTitle">${title}</div><div class="miniArenaGrid">${ordered.map(role=>{const mk=MARKS[map[role]];return `<div class="miniSpot"><div class="markFloat ${mk.cls}">${mk.label}</div><div class="miniHead"></div><div class="miniBody">${role}</div><div class="miniSub">頭上マーク</div></div>`;}).join("")}</div></div>`;}
+
+function determineGroups(method, marks){
+  const pairs=pairsFor(method), firstRoles=[], secondRoles=[];
+  if(method==="yaan"){
+    pairs.forEach(pair=>{
+      if(pair.some(r=>marks[r]==="stack")) firstRoles.push(...pair);
+      else secondRoles.push(...pair);
+    });
+    return {firstRoles, secondRoles};
+  }
+  // KT: 各ペアから1人ずつ先組、1人ずつ後組
+  pairs.forEach(pair=>{
+    const [a,b]=pair;
+    if(marks[a]==="stack" && marks[b]!=="stack") { firstRoles.push(a); secondRoles.push(b); }
+    else if(marks[b]==="stack" && marks[a]!=="stack") { firstRoles.push(b); secondRoles.push(a); }
+    else { firstRoles.push(a); secondRoles.push(b); }
+  });
+  return {firstRoles, secondRoles};
+}
+
+function simulateRoundMarks(initialMarks, firstRoles, secondRoles){
+  const roundMarks={}, nextAssignments={};
+  let current={...initialMarks};
+  for(let round=1;round<=8;round++){
+    roundMarks[round]={...current};
+    const towerGroup = [1,2,3,8].includes(round) ? firstRoles : secondRoles;
+    const rolled = randomMarksForRound(round);
+    nextAssignments[round]={};
+    towerGroup.forEach((role,idx)=>{ nextAssignments[round][role]=rolled[idx]; current[role]=rolled[idx]; });
+  }
+  return {roundMarks, nextAssignments};
+}
+
+function newProblem(){
+  const method=state.method, marks={};
+  const thRoles=["MT","ST","H1","H2"], dpsRoles=["D1","D2","D3","D4"];
+  const thStack=shuffle(thRoles)[0], dpsStack=shuffle(dpsRoles)[0];
+  const thRestMark=Math.random()<.5?"circle":"fan";
+  const dpsRestMark=thRestMark==="circle"?"fan":"circle";
+  thRoles.forEach(r=>marks[r]=(r===thStack)?"stack":thRestMark);
+  dpsRoles.forEach(r=>marks[r]=(r===dpsStack)?"stack":dpsRestMark);
+  const groups=determineGroups(method, marks);
+  const endTypes={2:Math.random()<.5?"past":"future",4:Math.random()<.5?"past":"future",6:Math.random()<.5?"past":"future",8:Math.random()<.5?"past":"future"};
+  const sim=simulateRoundMarks(marks, groups.firstRoles, groups.secondRoles);
+  state.problem={method, marks, endTypes, firstRoles:groups.firstRoles, secondRoles:groups.secondRoles, roundMarks:sim.roundMarks, nextAssignments:sim.nextAssignments};
+  state.answers={};
+  state.hardStep=0;
+  state.hardSelected=null;
+  state.hardChecked=false;
+  state.hardHistory=[];
+  renderAll();
+  setResult("初期マークを見て、1〜8回の行動を通しで選んでね。KT（りーん）は位置まで厳密判定する版です。","");
+}
+
+function groupNameOf(role){return state.problem.firstRoles.includes(role)?"先組":"後組";}
+function isFirstGroup(role){return state.problem.firstRoles.includes(role);}
+function towerRoundsFor(role){return isFirstGroup(role)?[1,2,3,8]:[4,5,6,7];}
+function activeRolesForRound(round){return [1,2,3,8].includes(round)?state.problem.firstRoles:state.problem.secondRoles;}
+function inactiveRolesForRound(round){return [1,2,3,8].includes(round)?state.problem.secondRoles:state.problem.firstRoles;}
+
+function resolveOddStackSides(stackRoles){
+  if(stackRoles.length!==2) return {left:stackRoles[0], right:stackRoles[1]};
+  const supports=stackRoles.filter(isSupport), dps=stackRoles.filter(isDps);
+  if(supports.length===1 && dps.length===1) return {left:supports[0], right:dps[0]};
+  const sorted=[...stackRoles].sort((a,b)=>oddStackPrio(a)-oddStackPrio(b));
+  return {left:sorted[0], right:sorted[1]};
+}
+
+function resolveEvenMarkSides(roles){
+  // 偶数回：扇は必ず塔の上側、円は必ず塔の下側。
+  // 左右は優先度（H > T > 近接 > 遠隔、同ロール内は数字順）で決める。
+  const sorted=[...roles].sort((a,b)=>oddStackPrio(a)-oddStackPrio(b));
+  return {left:sorted[0], right:sorted[1]};
+}
+
+function expectedActionKT(role, round){
+  const marks=state.problem.roundMarks[round];
+  const active=activeRolesForRound(round), inactive=inactiveRolesForRound(round);
+  const activeSet=new Set(active);
+  if(activeSet.has(role)){
+    if(round%2===1){
+      const mark=marks[role];
+      if(mark==="fan") return "tower_left_south";
+      if(mark==="circle") return "tower_right_south";
+      const stackRoles=active.filter(r=>marks[r]==="stack");
+      const sides=resolveOddStackSides(stackRoles);
+      return role===sides.left ? "tower_left_north" : "tower_right_north";
+    } else {
+      const mark=marks[role];
+      if(mark==="fan"){
+        const fanRoles=active.filter(r=>marks[r]==="fan");
+        const sides=resolveEvenMarkSides(fanRoles);
+        return role===sides.left ? "tower_left_north" : "tower_right_north";
+      }
+      if(mark==="circle"){
+        const circleRoles=active.filter(r=>marks[r]==="circle");
+        const sides=resolveEvenMarkSides(circleRoles);
+        return role===sides.left ? "tower_left_south" : "tower_right_south";
+      }
+      return "tower_left_south";
+    }
+  } else {
+    if(round%2===1){
+      if(isHealer(role)) return "fan_left";
+      if(isTank(role)) return "stack_left";
+      return "stack_right";
+    } else {
+      if(isTank(role)) return "inside_left";
+      if(isHealer(role)) return "fan_left";
+      if(isMelee(role)) return "inside_right";
+      return "fan_right";
+    }
+  }
+}
+
+function expectedActionYaan(role, round){
+  // ヤーン式は暫定：担当組判定はヤーン、位置判定は野良寄りの簡易版
+  const marks=state.problem.roundMarks[round];
+  const active=activeRolesForRound(round);
+  if(active.includes(role)){
+    if(round%2===1){
+      if(marks[role]==="fan") return "tower_left_south";
+      if(marks[role]==="circle") return "tower_right_south";
+      const stackRoles=active.filter(r=>marks[r]==="stack");
+      const sides=resolveYaanSides(stackRoles);
+      return role===sides.left ? "tower_left_north" : "tower_right_north";
+    } else {
+      const mark=marks[role];
+      if(mark==="fan"){
+        const fanRoles=active.filter(r=>marks[r]==="fan");
+        const sides=resolveYaanSides(fanRoles);
+        return role===sides.left ? "tower_left_north" : "tower_right_north";
+      }
+      if(mark==="circle"){
+        const circleRoles=active.filter(r=>marks[r]==="circle");
+        const sides=resolveYaanSides(circleRoles);
+        return role===sides.left ? "tower_left_south" : "tower_right_south";
+      }
+      return "tower_left_south";
+    }
+  } else {
+    if(round%2===1){
+      return isSupport(role) ? "stack_left" : "stack_right";
+    } else {
+      if(isSupport(role)) return role.startsWith("H") ? "fan_left" : "inside_left";
+      return isRanged(role) ? "fan_right" : "inside_right";
+    }
+  }
+}
+
+function expectedAction(role, round){
+  return state.problem.method==="kt" ? expectedActionKT(role, round) : expectedActionYaan(role, round);
+}
+function expectedActionForMode(role, round){
+  const base = expectedAction(role, round);
+  if(state.difficulty !== "hard") return base;
+  if(base === "fan_left") return round % 2 === 1 ? "fan_left_lower" : "fan_left_upper";
+  if(base === "fan_right") return "fan_right_upper";
+  return base;
+}
+function hardSteps(){
+  return [
+    {type:"tower", round:1},
+    {type:"tower", round:2},
+    {type:"safe", round:3, after:2},
+    {type:"tower", round:3},
+    {type:"tower", round:4},
+    {type:"safe", round:5, after:4},
+    {type:"tower", round:5},
+    {type:"tower", round:6},
+    {type:"safe", round:7, after:6},
+    {type:"tower", round:7},
+    {type:"tower", round:8},
+    {type:"safe", round:"final", after:8}
+  ];
+}
+function hardExpected(step){
+  if(step.type === "tower") return expectedActionForMode(state.role, step.round);
+  const key = step.after === 8 ? faceSideFor(state.problem.endTypes[8]) : faceSideFor(state.problem.endTypes[step.after]);
+  return key === "tower" ? "safe_tower" : "safe_opposite";
+}
+function hardTitle(step){
+  if(step.type === "tower") return `${step.round}回目：立ち位置を選ぶ`;
+  if(step.round === "final") return `最後の消滅の脚：誘導位置を選ぶ`;
+  return `${step.after}回目後 → ${step.round}回目の消滅の脚：誘導位置を選ぶ`;
+}
+function hardOptions(step){
+  if(step.type === "safe") return ["safe_tower","safe_opposite"];
+  return ["tower_left_north","tower_right_north","tower_left_south","tower_right_south","stack_left","stack_right","fan_left_upper","fan_right_upper","fan_left_lower","inside_left","inside_right"];
+}
+function hardPointLabel(key){
+  return HARD_ACTIONS[key]?.label || key;
+}
+function loadHardStepState(){
+  const saved=state.hardHistory[state.hardStep]||null;
+  state.hardSelected=saved?.selected || null;
+  state.hardChecked=!!saved?.checked;
+}
+function hardCastHTML(step){
+  // ハードでは、過去/未来の詠唱を偶数回の塔処理と、その直後の消滅の脚誘導ステップの両方に表示する。
+  if(step.type === "tower" && step.round % 2 === 0){
+    const endType=state.problem.endTypes[step.round];
+    return `<div class="castLine">詠唱：<b>${endLabel(endType)}</b></div>
+      <div class="small" style="margin-top:8px;">この詠唱を覚えて、次の消滅の脚誘導でボスを向ける方向を判断します。</div>`;
+  }
+  if(step.type === "safe"){
+    const castRound = step.after === 8 ? 8 : step.after;
+    const endType=state.problem.endTypes[castRound];
+    return `<div class="castLine">詠唱：<b>${endLabel(endType)}</b></div>`;
+  }
+  return "";
+}
+function hardMarkChangeHTML(step){
+  if(step.type !== "tower") return "";
+  const round=step.round;
+  const towerRoles=activeRolesForRound(round);
+  const currentMarks=state.problem.roundMarks[round];
+  const nextMarks=state.problem.nextAssignments[round];
+  const ordered=orderRolesForDisplay(towerRoles);
+  return `
+    <div class="marksBox">
+      <div class="marksTitle">${round===7||round===8?"この回に塔を踏む4人の現在マーク":"この回に塔を踏む4人のマーク変化"}</div>
+      <div class="small" style="margin-top:8px;">踏む前のマーク</div>
+      <div class="markList">${marksSummary(currentMarks, ordered)}</div>
+      ${round===7||round===8
+        ? `<div class="markArrow">この組はこの回が4回目の塔踏みなので、次回用マーク変化はありません。</div>`
+        : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div>
+           <div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, ordered)}</div>
+           <div class="markArrow">${round%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
+    </div>`;
+}
+
+function setAnswer(k,v){state.answers[k]=v;renderTimeline();}
+window.setAnswer=setAnswer;
+function getAnswer(k){return state.answers[k];}
+
+function renderControls(){
+  document.querySelectorAll(".methodBtn").forEach(b=>b.classList.toggle("active",b.dataset.method===state.method));
+  document.querySelectorAll(".difficultyBtn").forEach(b=>b.classList.toggle("active",b.dataset.difficulty===state.difficulty));
+  const box=document.getElementById("roleBtns"); box.innerHTML="";
+  ROLES.forEach(r=>{const b=document.createElement("button"); b.textContent=r; b.className=r===state.role?"active":""; b.onclick=()=>{state.role=r; localStorage.setItem("missingRole",r); renderAll();}; box.appendChild(b);});
+  const mini=document.getElementById("timelineMini");
+  if(mini) mini.classList.toggle("hidden", state.difficulty==="hard");
+  const resetTop=document.getElementById("resetHardTopBtn");
+  if(resetTop) resetTop.classList.toggle("hidden", state.difficulty!=="hard");
+}
+function renderPlayers(){
+  const box=document.getElementById("players"), p=state.problem, partner=partnerOf(state.role,p.method), first=new Set(p.firstRoles);
+  box.innerHTML="";
+  DISPLAY_ROLES.forEach(role=>{
+    const div=document.createElement("div"), mark=MARKS[p.marks[role]];
+    div.className="player"+(role===state.role?" me":"")+(role===partner?" partner":"");
+    const metaParts=[];
+    if(role===state.role) metaParts.push("あなた");
+    if(role===partner) metaParts.push("相方");
+    if(state.difficulty!=="hard") metaParts.push(first.has(role)?"先組 1238":"後組 4567");
+    div.innerHTML=`<div class="role">${role}</div><span class="mark ${mark.cls}">${mark.label}</span><div class="meta">${metaParts.join(" / ")}</div>`;
+    box.appendChild(div);
+  });
+}
+function renderStats(){
+  document.getElementById("total").textContent=state.stats.total;
+  document.getElementById("ok").textContent=state.stats.ok;
+  document.getElementById("ng").textContent=state.stats.ng;
+  document.getElementById("rate").textContent=state.stats.total?Math.round(state.stats.ok/state.stats.total*100)+"%":"0%";
+}
+function renderAll(){renderControls(); renderPlayers(); renderTimeline(); renderHardPanel(); renderStats();}
+
+function towerActionButtons(selected, round){
+  return ["tower_left_north","tower_right_north","tower_left_south","tower_right_south","stack_left","stack_right","fan_left","fan_right","inside_left","inside_right"].map(k=>actionButton(k,selected,round)).join("");
+}
+function phaseHintForRole(round, role){
+  const exp=expectedAction(role, round);
+  const phase=[];
+  if(round%2===1) phase.push("奇数回"); else phase.push("偶数回");
+  if(activeRolesForRound(round).includes(role)) phase.push("塔担当"); else phase.push("塔外担当");
+  return phase.join(" / ");
+}
+
+function renderTimeline(){
+  const box=document.getElementById("timeline");
+  if(state.difficulty === "hard"){ box.classList.add("hidden"); box.innerHTML=""; return; }
+  box.classList.remove("hidden");
+  box.innerHTML="";
+  for(let i=1;i<=8;i++){
+    const step=document.createElement("div"); step.className="step";
+    const towerRoles=activeRolesForRound(i), currentMarks=state.problem.roundMarks[i], nextMarks=state.problem.nextAssignments[i];
+    let html=`<div class="stepHeader"><div class="stepTitle">${i}回目塔</div><div class="stepNote">${phaseHintForRole(i,state.role)}${i===3||i===5||i===7?" / 消滅の脚と同時":i===8?" / 後に過去/未来→最後の消滅の脚":i%2===0?" / 後に過去/未来の終焉":""}</div></div>
+    <div class="marksBox">
+      <div class="marksTitle">${i===7||i===8?"この回に塔を踏む4人の現在マーク":"この回に塔を踏む4人のマーク変化"}</div>
+      <div class="small" style="margin-top:8px;">踏む前のマーク</div>
+      <div class="markList">${marksSummary(currentMarks, orderRolesForDisplay(towerRoles))}</div>
+      ${i===7||i===8
+        ? `<div class="markArrow">この組はこの回が4回目の塔踏みなので、4スタック消化後の次回用マーク変化はありません。</div>`
+        : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div><div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, orderRolesForDisplay(towerRoles))}</div><div class="markArrow">${i%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
+    </div>
+    <div class="actionSectionTitle">この回の主行動を選ぶ</div>
+    <div class="actionGrid">${towerActionButtons(getAnswer(`action${i}`),i)}</div>`;
+    if(i%2===0){
+      const endType=state.problem.endTypes[i];
+      html += `<div class="castLine">${i}回目後の詠唱：<b>${endLabel(endType)}</b></div><div class="small" style="margin-top:10px;">近い4人への円範囲。想定する4人は <b>ボス左上/右上のタゲサ内に入るタンク・近接</b> と、<b>左右の北側で塔を踏んでいる2人</b> です。</div>`;
+      if(i<8){
+        const nextOdd=i+1, aSafe=getAnswer(`safe${nextOdd}`);
+        html += `<div class="castLine">次の${nextOdd}回目に向けた消滅の脚のボス誘導</div><div class="small" style="margin-top:10px;">奇数回の塔処理の前に、8人でボスの向きを固定する。塔側に半面が来ないように、どちらへ向けるか選ぶ。</div><div class="choiceGrid"><button class="${aSafe==='tower'?'selected':''}" onclick="setAnswer('safe${nextOdd}','tower')">塔側へ向ける</button><button class="${aSafe==='opposite'?'selected':''}" onclick="setAnswer('safe${nextOdd}','opposite')">塔の逆側へ向ける</button></div>`;
+      } else {
+        const aFinal=getAnswer("safeFinal");
+        html += `<div class="castLine">最後の消滅の脚に向けたボス誘導</div><div class="small" style="margin-top:10px;">塔側に半面が来ないように、ボスをどちらへ向けるか選ぶ。</div><div class="choiceGrid"><button class="${aFinal==='tower'?'selected':''}" onclick="setAnswer('safeFinal','tower')">塔側へ向ける</button><button class="${aFinal==='opposite'?'selected':''}" onclick="setAnswer('safeFinal','opposite')">塔の逆側へ向ける</button></div>`;
+      }
+    }
+    if(i===3||i===5||i===7){
+      const prev=i-1, endType=state.problem.endTypes[prev];
+      html += `<div class="castLine">直前の詠唱：<b>${endLabel(endType)}</b></div><div class="small" style="margin-top:10px;">この回は消滅の脚と塔処理が同時。ボス向きの選択は直前の偶数回の最後で済ませる前提です。</div>`;
+    }
+    if(i===8){
+      const endType=state.problem.endTypes[8];
+      html += `<div class="castLine">最後の消滅の脚：直前は <b>${endLabel(endType)}</b></div><div class="small" style="margin-top:10px;">向きの選択はこの回の下で行います。</div>`;
+    }
+    step.innerHTML=html; box.appendChild(step);
+  }
+}
+
+function renderHardPanel(){
+  const panel=document.getElementById("hardPanel");
+  if(!panel) return;
+  if(state.difficulty !== "hard"){ panel.classList.add("hidden"); panel.innerHTML=""; return; }
+  panel.classList.remove("hidden");
+  const steps=hardSteps();
+  if(state.hardStep >= steps.length) state.hardStep = steps.length - 1;
+  const step=steps[state.hardStep];
+  const expected=hardExpected(step);
+  const opts=hardOptions(step);
+  const optionHtml=opts.map(key=>{
+    const p=HARD_ACTIONS[key];
+    const cls=[
+      "hardPos",
+      state.hardSelected===key ? "selected" : "",
+      state.hardChecked && key===expected ? "correct" : "",
+      state.hardChecked && state.hardSelected===key && key!==expected ? "wrong" : ""
+    ].filter(Boolean).join(" ");
+    return `<button class="${cls}" title="${p.label}" aria-label="${p.label}" style="left:${p.x}%;top:${p.y}%;" onclick="chooseHard('${key}')"><span class="hardPointLabel">${p.label}</span></button>`;
+  }).join("");
+  const progress=`${state.hardStep+1} / ${steps.length}`;
+  const resultClass=state.hardChecked ? (state.hardSelected===expected ? "good" : "bad") : "";
+  const resultText=state.hardChecked
+    ? (state.hardSelected===expected ? "正解。次へ進めます。" : `不正解。正解は「${hardPointLabel(expected)}」です。`)
+    : "図の中から正しい立ち位置を選んでください。";
+  const stepHelp = step.type === "safe"
+    ? "消滅の脚のため、ボスを塔側/塔の逆側のどちらへ向けるかを選びます。"
+    : "左塔/右塔、塔外誘導、ボス左上/右上の候補点から、この回の自分の立ち位置を選びます。";
+  panel.innerHTML = `
+    <div class="hardStage">
+      <div class="hardHeader">
+        <div class="hardTitle">${hardTitle(step)}</div>
+        <div class="hardProgress">${progress}</div>
+      </div>
+      ${hardCastHTML(step)}
+      <div class="hardMini">${stepHelp}</div>
+      ${hardMarkChangeHTML(step)}
+      <div class="hardArena">
+        <div class="hardBossRing"></div>
+        <div class="hardTower left"></div>
+        <div class="hardTower right"></div>
+        <div class="hardCenterLabel">中央</div>
+        ${optionHtml}
+      </div>
+      <div class="hardResult ${resultClass}">${resultText}</div>
+      <div class="hardControls">
+        <button onclick="prevHardStep()" ${state.hardStep>0 ? "" : "disabled"}>前へ</button>
+        <button class="primary" onclick="checkHardCurrent()">この手を判定</button>
+        <button onclick="nextHardStep()" ${state.hardChecked && state.hardSelected===expected ? "" : "disabled"}>次へ</button>
+      </div>
+    </div>`;
+}
+function chooseHard(key){
+  state.hardHistory=state.hardHistory.slice(0,state.hardStep+1);
+  state.hardSelected=key;
+  state.hardChecked=false;
+  state.hardHistory[state.hardStep]={selected:key,checked:false};
+  renderHardPanel();
+}
+window.chooseHard=chooseHard;
+function checkHardCurrent(){
+  const steps=hardSteps();
+  const step=steps[state.hardStep];
+  const expected=hardExpected(step);
+  if(!state.hardSelected){ setResult("図の中から立ち位置を選んでね。","bad"); return; }
+  state.hardChecked=true;
+  state.hardHistory[state.hardStep]={selected:state.hardSelected,checked:true};
+  renderHardPanel();
+  if(state.hardSelected===expected){
+    setResult(`正解：${HARD_ACTIONS[expected].label}`,"good");
+  }else{
+    setResult(`惜しい。正解は ${HARD_ACTIONS[expected].label}`,"bad");
+  }
+}
+window.checkHardCurrent=checkHardCurrent;
+function nextHardStep(){
+  const steps=hardSteps();
+  const step=steps[state.hardStep];
+  if(state.hardSelected!==hardExpected(step)) return;
+  if(state.hardStep < steps.length-1){
+    state.hardStep++;
+    loadHardStepState();
+    renderHardPanel();
+    setResult("次の処理を選んでね。","");
+  }else{
+    setResult("ハード通し完了！","good");
+  }
+}
+window.nextHardStep=nextHardStep;
+function prevHardStep(){
+  if(state.hardStep<=0) return;
+  state.hardStep--;
+  loadHardStepState();
+  renderHardPanel();
+  setResult("1つ前の処理に戻りました。","");
+}
+window.prevHardStep=prevHardStep;
+function resetHardRun(){
+  state.hardStep=0;
+  state.hardSelected=null;
+  state.hardChecked=false;
+  state.hardHistory=[];
+  renderHardPanel();
+  setResult("ハード通しを最初からやり直します。","");
+}
+window.resetHardRun=resetHardRun;
+
+function check(){
+  if(state.difficulty === "hard"){ checkHardCurrent(); return; }
+  const errors=[];
+  for(let i=1;i<=8;i++){
+    const expected=expectedAction(state.role, i), got=getAnswer(`action${i}`);
+    if(!got) errors.push(`${i}回目：主行動が未選択`);
+    else if(got!==expected) errors.push(`${i}回目：正解は「${actionLabel(expected)}」`);
+    if(i===3||i===5||i===7){
+      const expectedSafe=faceSideFor(state.problem.endTypes[i-1]), gotSafe=getAnswer(`safe${i}`);
+      if(gotSafe!==expectedSafe) errors.push(`${i}回目 消滅の脚：正解は「ボスを${sideLabel(expectedSafe)}へ向ける」`);
+    }
+  }
+  const finalSafe=faceSideFor(state.problem.endTypes[8]);
+  if(getAnswer("safeFinal")!==finalSafe) errors.push(`最後の消滅の脚：正解は「ボスを${sideLabel(finalSafe)}へ向ける」`);
+  state.stats.total++;
+  if(errors.length===0){ state.stats.ok++; setResult("全問正解！通し判断OK。", "good"); }
+  else { state.stats.ng++; setResult("ミスあり：<br>・"+errors.join("<br>・"), "bad"); }
+  saveStats(); renderStats(); markAnswers();
+}
+
+function markAnswers(){
+  document.querySelectorAll(".step").forEach((step, idx)=>{
+    const i=idx+1, expected=expectedAction(state.role, i);
+    step.querySelectorAll("button").forEach(btn=>{
+      const onclick=btn.getAttribute("onclick") || "";
+      const m=onclick.match(/setAnswer\('action\d+','([^']+)'\)/);
+      if(m){
+        const key=m[1], selected=getAnswer(`action${i}`);
+        if(key===expected) btn.classList.add("correct");
+        if(selected===key && key!==expected) btn.classList.add("wrong");
+      }
+      const msafe = onclick.match(/setAnswer\('safe(\d+)'\,'([^']+)'\)/);
+      if(msafe){
+        const oddRound=Number(msafe[1]);
+        const expectedSafe=faceSideFor(state.problem.endTypes[oddRound-1]);
+        if(msafe[2]===expectedSafe) btn.classList.add("correct");
+        else if(btn.classList.contains("selected")) btn.classList.add("wrong");
+      }
+      if(i===8 && onclick.includes("safeFinal")){
+        const expectedSafe=faceSideFor(state.problem.endTypes[8]);
+        if(onclick.includes(`'${expectedSafe}'`)) btn.classList.add("correct");
+        else if(btn.classList.contains("selected")) btn.classList.add("wrong");
+      }
+    });
+  });
+}
+
+function showAnswer(){
+  const lines=[];
+  lines.push(`${state.role} は ${groupNameOf(state.role)}（${isFirstGroup(state.role)?"1/2/3/8":"4/5/6/7"}担当）`);
+  lines.push(`解法：${state.problem.method==="kt"?"KT（りーん）":"ヤーン式"}`);
+  for(let i=1;i<=8;i++){
+    const exp=expectedAction(state.role, i);
+    const extra=[];
+    if(i%2===0){
+      extra.push(`${endLabel(state.problem.endTypes[i])}`);
+      if(i<8) extra.push(`次の消滅の脚：ボスを${sideLabel(faceSideFor(state.problem.endTypes[i]))}へ向ける`);
+      else extra.push(`最後の消滅の脚：ボスを${sideLabel(faceSideFor(state.problem.endTypes[8]))}へ向ける`);
+    }
+    lines.push(`${i}回目：${actionLabel(exp)}${extra.length?` / ${extra.join(' / ')}`:''}`);
+  }
+  lines.push(`最後の消滅の脚：ボスを${sideLabel(faceSideFor(state.problem.endTypes[8]))}へ向ける（半面は${halfSideLabel(state.problem.endTypes[8])}へ出る）`);
+  setResult(lines.join("<br>"), "");
+}
+
+function retry(){state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; renderTimeline(); renderHardPanel(); setResult("同じ問題です。もう一度選んでね。", "");}
+function setResult(html, cls){const r=document.getElementById("result"); r.innerHTML=html; r.className="result"+(cls?" "+cls:"");}
+function saveStats(){localStorage.setItem("missingNormalCombinedStats", JSON.stringify(state.stats));}
+
+document.querySelectorAll(".methodBtn").forEach(btn=>{btn.onclick=()=>{state.method=btn.dataset.method; localStorage.setItem("missingMethod", state.method); newProblem();};});
+document.querySelectorAll(".difficultyBtn").forEach(btn=>{btn.onclick=()=>{state.difficulty=btn.dataset.difficulty; localStorage.setItem("missingDifficulty", state.difficulty); state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; renderAll(); setResult(`難易度を${state.difficulty==="hard"?"ハード":"ノーマル"}に切り替えました。`, "");};});
+document.getElementById("newBtn").onclick=newProblem;
+document.getElementById("retryBtn").onclick=retry;
+const checkBtn=document.getElementById("checkBtn"); if(checkBtn) checkBtn.onclick=check;
+document.getElementById("showBtn").onclick=showAnswer;
+document.getElementById("resetBtn").onclick=()=>{state.stats={total:0,ok:0,ng:0}; saveStats(); renderStats();};
+
+newProblem();
+
+</script>
+</body>
+</html>
