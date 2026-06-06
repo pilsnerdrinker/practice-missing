@@ -136,10 +136,9 @@
 <body>
 <div class="wrap">
   <h1>ミッシング 1238/4567 通し練習</h1>
-  <div class="sub">解法を <b>KT（りーん） / ヤーン式</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答えるプロトタイプです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
+  <div class="sub">解法を <b>KT（りーん）式 / ヤーン式</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答える練習アプリです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
   <div class="grid">
     <section class="card">
-      <div class="row"><span class="pill">ノーマル 完成版</span><span class="pill">KT（りーん） / ヤーン式 切替</span><span class="pill">塔/塔外役割 + 付与更新 + 過去未来 + 消滅の脚</span></div>
       <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）</button><button class="methodBtn" data-method="yaan">ヤーン式</button></div></div>
       <div class="ctrl"><div class="ctrlLabel">難易度</div><div class="btns"><button class="difficultyBtn" data-difficulty="normal">ノーマル</button><button class="difficultyBtn" data-difficulty="hard">ハード</button></div></div>
       <div class="ctrl"><div class="ctrlLabel">自分</div><div class="btns" id="roleBtns"></div></div>
@@ -294,7 +293,7 @@ function newProblem(){
   state.hardChecked=false;
   state.hardHistory=[];
   renderAll();
-  setResult("初期マークを見て、1〜8回の行動を通しで選んでね。KT（りーん）は位置まで厳密判定する版です。","");
+  setResult("初期マークを見て、1〜8回の行動を通しで選んでね。","");
 }
 
 function groupNameOf(role){return state.problem.firstRoles.includes(role)?"先組":"後組";}
