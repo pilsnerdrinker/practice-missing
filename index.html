@@ -166,7 +166,7 @@
   </div>
   <div class="grid">
     <section class="card">
-      <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）</button><button class="methodBtn" data-method="yaan">ヤーン式</button></div></div>
+      <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）式</button><button class="methodBtn" data-method="yaan">ヤーン式</button></div></div>
       <div class="ctrl"><div class="ctrlLabel">難易度</div><div class="btns"><button class="difficultyBtn" data-difficulty="normal">ノーマル</button><button class="difficultyBtn" data-difficulty="hard">ハード</button></div></div>
       <div class="ctrl"><div class="ctrlLabel">自分</div><div class="btns" id="roleBtns"></div></div>
       <div class="btns" style="margin-top:12px"><button class="primary" id="newBtn">新しい問題</button><button class="ghost" id="retryBtn">同じ問題をやり直す</button></div>
@@ -183,7 +183,7 @@
       <div class="stat"><div><b id="total">0</b><span>回答</span></div><div><b id="ok">0</b><span>全問正解</span></div><div><b id="ng">0</b><span>ミスあり</span></div><div><b id="rate">0%</b><span>正答率</span></div></div>
       <button class="ghost" id="resetBtn" style="margin-top:10px;width:100%">成績リセット</button>
       <details open><summary>この版で判定していること</summary><div class="small"><p><b>塔担当：</b>先組は1/2/3/8、後組は4/5/6/7。</p><p><b>回答形式：</b>全員が常に役割を持ちます。左塔・上 / 右塔・上 / 左塔・下 / 右塔・下 の塔踏み、左右頭割り、左右扇誘導、ボス左上/右上での誘導などから選びます。</p><p><b>過去/未来の終焉：</b>偶数回後に近い4人へ円範囲。想定する4人は、<b>タゲサ内の左上/右上に入るタンク・近接</b> と、<b>左右の上側で塔を踏む2人</b> です。</p><p><b>消滅の脚：</b>「自分が塔側/塔の逆側へ避ける」ではなく、ボスの向きを塔側/塔の逆側に誘導して、塔側に半面が来ないようにします。</p><p><b>向き誘導：</b>過去の終焉ならボスを塔側へ向ける、未来の終焉ならボスを塔の逆側へ向ける想定です。</p><p><b>同時処理：</b>消滅の脚そのものは奇数回の塔処理と同時ですが、<b>8人でのボス向き誘導はその前、直前の偶数回の最後に行う</b> 想定で出題します。</p></div></details>
-      <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）の組分けルールで先組/後組に分かれます。</p><p><b>ヤーン式：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。</p><p><b>ヤーン式の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
+      <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）式：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）式の組分けルール（H1>H2 / MT>ST / D1>D2 / D3>D4）で先組/後組に分かれます。</p><p><b>ヤーン式：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。</p><p><b>ヤーン式の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
       <details><summary>ギミック共通メモ</summary><div class="small"><p>塔を踏むと、その人の現在の表示パターンの攻撃が発動し、<b>踏んだ4人だけ</b> 次回用の表示に張り替わります。</p><p><b>奇数回</b>に踏んだ4人は、次回用に <b>円2・扇2</b> がランダムで付きます。</p><p><b>偶数回</b>に踏んだ4人は、次回用に <b>頭割り2・円1・扇1</b> がランダムで付きます。</p><p>この版では、そのランダム付与内容も各回の下に表示します。</p><p>偶数塔後は、過去/未来の終焉の円範囲誘導を行い、そのまま次の奇数回に向けたボス向き誘導（消滅の脚用）を先に処理します。</p></div></details>
     </aside>
   </div>
