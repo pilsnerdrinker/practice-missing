@@ -131,12 +131,39 @@
 .hardBossCore{z-index:2}
 .hardCenterLabel{z-index:2}
 
+.readmeLinkBox{
+  margin:10px 0 14px;
+}
+
+.readmeLinkBox a{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(143,211,255,.35);
+  background:rgba(143,211,255,.08);
+  color:#8fd3ff;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.readmeLinkBox a:hover{
+  filter:brightness(1.12);
+}
+
+  
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>ミッシング 1238/4567 通し練習</h1>
   <div class="sub">解法を <b>KT（りーん）式 / ヤーン式</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答える練習アプリです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
+  <div class="readmeLinkBox">
+    <a
+    href="https://github.com/pilsnerdrinker/practice-missing#readme" target="_blank" rel="noopener noreferrer">
+    使い方・仕様（README）を見る </a>
+  </div>
   <div class="grid">
     <section class="card">
       <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）</button><button class="methodBtn" data-method="yaan">ヤーン式</button></div></div>
