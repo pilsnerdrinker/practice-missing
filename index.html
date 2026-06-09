@@ -134,6 +134,21 @@
   display:block;
   pointer-events:none;
 }
+.hardMapRoundLabel{
+  position:absolute;
+  left:10px;
+  top:10px;
+  z-index:6;
+  padding:5px 9px;
+  border-radius:999px;
+  border:1px solid rgba(143,211,255,.35);
+  background:rgba(10,14,23,.78);
+  color:#dff4ff;
+  font-size:12px;
+  font-weight:950;
+  text-shadow:0 1px 3px #000;
+  pointer-events:none;
+}
 .hardPos.selfPosition{
   outline:4px solid rgba(255,209,102,.98);
   border-color:#fff2b0;
@@ -215,7 +230,7 @@
       <div class="timelineMini" id="timelineMini"><span class="tmini">1塔</span><span class="tmini">2塔→過去/未来</span><span class="tmini">3塔+消滅の脚</span><span class="tmini">4塔→過去/未来</span><span class="tmini">5塔+消滅の脚</span><span class="tmini">6塔→過去/未来</span><span class="tmini">7塔+消滅の脚</span><span class="tmini">8塔→過去/未来→消滅の脚</span></div>
       <div class="timeline" id="timeline"></div>
       <div class="hardPanel" id="hardPanel"></div>
-      <div class="btns" style="margin-top:14px"><button class="primary" id="checkBtn">通し判定</button><button id="showBtn">正解を表示</button><button class="ghost hidden" id="resetHardTopBtn" onclick="resetHardRun()">最初から</button></div>
+      <div class="btns" style="margin-top:14px"><button class="primary" id="checkBtn">通し判定</button><button id="showBtn">正解を表示</button><button class="ghost hidden" id="resetHardTopBtn" onclick="resetHardRun()">最初から</button><button class="ghost hidden" id="newHardBottomBtn" onclick="newProblem()">新しい問題</button></div>
       <div class="result" id="result">初期マークを見て、1〜8回の動きを通しで選んでね。</div>
     </section>
     <aside class="card">
@@ -561,6 +576,8 @@ function renderControls(){
   if(mini) mini.classList.toggle("hidden", state.difficulty==="hard");
   const resetTop=document.getElementById("resetHardTopBtn");
   if(resetTop) resetTop.classList.toggle("hidden", state.difficulty!=="hard");
+  const newHardBottom=document.getElementById("newHardBottomBtn");
+  if(newHardBottom) newHardBottom.classList.toggle("hidden", state.difficulty!=="hard");
   const checkTop=document.getElementById("checkBtn");
   if(checkTop) checkTop.classList.toggle("hidden", state.difficulty==="hard");
 }
@@ -663,6 +680,12 @@ function roleLabelHTML(roles){
   return roles.map(r=>`<span class="hardRoleName ${r===state.role ? "selfRole" : ""}">${r}</span>`).join("");
 }
 
+function hardMapRoundLabel(step){
+  if(step.type==="tower") return `${step.round}回目`;
+  if(step.round==="final") return "最後";
+  return `${step.round}回目`;
+}
+
 function renderHardPanel(){
   const panel=document.getElementById("hardPanel");
   if(!panel) return;
@@ -708,6 +731,7 @@ function renderHardPanel(){
       <div class="hardMini">${stepHelp}</div>
       ${hardMarkChangeHTML(step)}
       <div class="hardArena">
+        <div class="hardMapRoundLabel">${hardMapRoundLabel(step)}</div>
         <div class="hardBossRing"></div>
         <div class="hardTower left"></div>
         <div class="hardTower right"></div>
