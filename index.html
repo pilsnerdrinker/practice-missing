@@ -43,7 +43,7 @@
 .hardTower.right{left:73%;top:67%}
 .hardBossRing{
   position:absolute;
-  width:34%;
+  width:40%;
   aspect-ratio:1/1;
   border:3px solid rgba(255,80,80,.95);
   border-radius:50%;
@@ -113,6 +113,42 @@
   pointer-events:none;
 }
 .hardPos.showLabel{color:transparent}
+.hardPos.showAllRoleLabel{
+  width:46px;
+  height:46px;
+  border-color:#dfffe7;
+  background:rgba(37,217,74,.26);
+  color:#eafff0;
+  font-size:11px;
+  font-weight:950;
+  line-height:1.05;
+  text-align:center;
+  white-space:normal;
+  text-shadow:0 1px 3px #000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2px;
+}
+.hardRoleLabel{
+  display:block;
+  pointer-events:none;
+}
+.hardPos.selfPosition{
+  outline:4px solid rgba(255,209,102,.98);
+  border-color:#fff2b0;
+  background:rgba(255,209,102,.26);
+  box-shadow:0 0 0 2px rgba(255,209,102,.20), 0 0 16px rgba(255,209,102,.25);
+}
+.hardRoleName{
+  display:block;
+}
+.hardRoleName.selfRole{
+  color:#fff2b0;
+  font-weight:1000;
+  text-shadow:0 1px 4px #000, 0 0 8px rgba(255,209,102,.45);
+}
+
 .hardResult{min-height:42px;margin-top:10px;padding:10px;border-radius:12px;border:1px solid var(--line);color:var(--muted);background:#0d1421;line-height:1.5}
 .hardResult.good{color:#d9ffe5;border-color:rgba(113,227,155,.55);background:rgba(113,227,155,.08)}
 .hardResult.bad{color:#ffe1e6;border-color:rgba(255,122,138,.55);background:rgba(255,122,138,.08)}
@@ -243,6 +279,7 @@ const state={
   hardSelected:null,
   hardChecked:false,
   hardHistory:[],
+  hardShowAllPositions:false,
   role:localStorage.getItem("missingRole")||"MT",
   problem:null,
   answers:{},
@@ -323,6 +360,7 @@ function newProblem(){
   state.hardSelected=null;
   state.hardChecked=false;
   state.hardHistory=[];
+  state.hardShowAllPositions=false;
   renderAll();
   setResult("初期マークを見て、1〜8回の行動を通しで選んでね。","");
 }
@@ -601,6 +639,30 @@ function renderTimeline(){
   }
 }
 
+
+function hardAllPositionRoles(step){
+  const result={};
+  if(step.type==="safe"){
+    const key = step.after === 8 ? faceSideFor(state.problem.endTypes[8]) : faceSideFor(state.problem.endTypes[step.after]);
+    const safeKey = key === "tower" ? "safe_tower" : "safe_opposite";
+    result[safeKey]=["全員"];
+    return result;
+  }
+
+  ROLES.forEach(role=>{
+    const key=expectedActionForMode(role, step.round);
+    if(!result[key]) result[key]=[];
+    result[key].push(role);
+  });
+  return result;
+}
+
+function roleLabelHTML(roles){
+  if(!roles || !roles.length) return "";
+  if(roles.length===1 && roles[0]==="全員") return "全員";
+  return roles.map(r=>`<span class="hardRoleName ${r===state.role ? "selfRole" : ""}">${r}</span>`).join("");
+}
+
 function renderHardPanel(){
   const panel=document.getElementById("hardPanel");
   if(!panel) return;
@@ -611,15 +673,22 @@ function renderHardPanel(){
   const step=steps[state.hardStep];
   const expected=hardExpected(step);
   const opts=hardOptions(step);
+  const allPositionRoles=state.hardShowAllPositions ? hardAllPositionRoles(step) : {};
   const optionHtml=opts.map(key=>{
     const p=HARD_ACTIONS[key];
+    const roles=allPositionRoles[key] || [];
     const cls=[
       "hardPos",
+      roles.length ? "showAllRoleLabel" : "",
+      (roles.includes(state.role) || roles.includes("全員")) ? "selfPosition" : "",
       state.hardSelected===key ? "selected" : "",
       state.hardChecked && key===expected ? "correct" : "",
       state.hardChecked && state.hardSelected===key && key!==expected ? "wrong" : ""
     ].filter(Boolean).join(" ");
-    return `<button class="${cls}" title="${p.label}" aria-label="${p.label}" style="left:${p.x}%;top:${p.y}%;" onclick="chooseHard('${key}')"><span class="hardPointLabel">${p.label}</span></button>`;
+    const inner=roles.length
+      ? `<span class="hardRoleLabel">${roleLabelHTML(roles)}</span>`
+      : `<span class="hardPointLabel">${p.label}</span>`;
+    return `<button class="${cls}" title="${p.label}" aria-label="${p.label}" style="left:${p.x}%;top:${p.y}%;" onclick="chooseHard('${key}')">${inner}</button>`;
   }).join("");
   const progress=`${state.hardStep+1} / ${steps.length}`;
   const resultClass=state.hardChecked ? (state.hardSelected===expected ? "good" : "bad") : "";
@@ -649,7 +718,7 @@ function renderHardPanel(){
       <div class="hardControls">
         <button onclick="prevHardStep()" ${state.hardStep>0 ? "" : "disabled"}>前へ</button>
         <button class="primary" onclick="checkHardCurrent()">この手を判定</button>
-        <button onclick="nextHardStep()" ${state.hardChecked && state.hardSelected===expected ? "" : "disabled"}>次へ</button>
+        <button onclick="nextHardStep()" ${(state.hardShowAllPositions || (state.hardChecked && state.hardSelected===expected)) ? "" : "disabled"}>次へ</button>
       </div>
     </div>`;
 }
@@ -657,6 +726,7 @@ function chooseHard(key){
   state.hardHistory=state.hardHistory.slice(0,state.hardStep+1);
   state.hardSelected=key;
   state.hardChecked=false;
+  state.hardShowAllPositions=false;
   state.hardHistory[state.hardStep]={selected:key,checked:false};
   renderHardPanel();
 }
@@ -679,9 +749,10 @@ window.checkHardCurrent=checkHardCurrent;
 function nextHardStep(){
   const steps=hardSteps();
   const step=steps[state.hardStep];
-  if(state.hardSelected!==hardExpected(step)) return;
+  if(!state.hardShowAllPositions && state.hardSelected!==hardExpected(step)) return;
   if(state.hardStep < steps.length-1){
     state.hardStep++;
+    state.hardShowAllPositions=false;
     loadHardStepState();
     renderHardPanel();
     setResult("次の処理を選んでね。","");
@@ -693,6 +764,7 @@ window.nextHardStep=nextHardStep;
 function prevHardStep(){
   if(state.hardStep<=0) return;
   state.hardStep--;
+  state.hardShowAllPositions=false;
   loadHardStepState();
   renderHardPanel();
   setResult("1つ前の処理に戻りました。","");
@@ -703,6 +775,7 @@ function resetHardRun(){
   state.hardSelected=null;
   state.hardChecked=false;
   state.hardHistory=[];
+  state.hardShowAllPositions=false;
   renderHardPanel();
   setResult("ハード通しを最初からやり直します。","");
 }
@@ -755,10 +828,10 @@ function markAnswers(){
   });
 }
 
-function showAnswer(){
+function fullAnswerLines(){
   const lines=[];
   lines.push(`${state.role} は ${groupNameOf(state.role)}（${isFirstGroup(state.role)?"1/2/3/8":"4/5/6/7"}担当）`);
-  lines.push(`解法：${state.problem.method==="kt"?"KT（りーん）":"ヤーン式"}`);
+  lines.push(`解法：${state.problem.method==="kt"?"KT（りーん）式":"ヤーン式"}`);
   for(let i=1;i<=8;i++){
     const exp=expectedAction(state.role, i);
     const extra=[];
@@ -770,15 +843,26 @@ function showAnswer(){
     lines.push(`${i}回目：${actionLabel(exp)}${extra.length?` / ${extra.join(' / ')}`:''}`);
   }
   lines.push(`最後の消滅の脚：ボスを${sideLabel(faceSideFor(state.problem.endTypes[8]))}へ向ける（半面は${halfSideLabel(state.problem.endTypes[8])}へ出る）`);
-  setResult(lines.join("<br>"), "");
+  return lines;
 }
 
-function retry(){state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; renderTimeline(); renderHardPanel(); setResult("同じ問題です。もう一度選んでね。", "");}
+function showAnswer(){
+  const answerHtml=fullAnswerLines().join("<br>");
+  if(state.difficulty==="hard"){
+    state.hardShowAllPositions=true;
+    renderHardPanel();
+    setResult(`現在の処理の全員分の正解立ち位置をマップ上に表示しました。<br><br>${answerHtml}`, "");
+    return;
+  }
+  setResult(answerHtml, "");
+}
+
+function retry(){state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; state.hardShowAllPositions=false; renderTimeline(); renderHardPanel(); setResult("同じ問題です。もう一度選んでね。", "");}
 function setResult(html, cls){const r=document.getElementById("result"); r.innerHTML=html; r.className="result"+(cls?" "+cls:"");}
 function saveStats(){localStorage.setItem("missingNormalCombinedStats", JSON.stringify(state.stats));}
 
 document.querySelectorAll(".methodBtn").forEach(btn=>{btn.onclick=()=>{state.method=btn.dataset.method; localStorage.setItem("missingMethod", state.method); newProblem();};});
-document.querySelectorAll(".difficultyBtn").forEach(btn=>{btn.onclick=()=>{state.difficulty=btn.dataset.difficulty; localStorage.setItem("missingDifficulty", state.difficulty); state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; renderAll(); setResult(`難易度を${state.difficulty==="hard"?"ハード":"ノーマル"}に切り替えました。`, "");};});
+document.querySelectorAll(".difficultyBtn").forEach(btn=>{btn.onclick=()=>{state.difficulty=btn.dataset.difficulty; localStorage.setItem("missingDifficulty", state.difficulty); state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; state.hardShowAllPositions=false; renderAll(); setResult(`難易度を${state.difficulty==="hard"?"ハード":"ノーマル"}に切り替えました。`, "");};});
 document.getElementById("newBtn").onclick=newProblem;
 document.getElementById("retryBtn").onclick=retry;
 const checkBtn=document.getElementById("checkBtn"); if(checkBtn) checkBtn.onclick=check;
