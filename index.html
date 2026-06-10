@@ -209,42 +209,46 @@
 }
   
 
-.otherPracticeLinkBox{
-  margin:0 0 14px;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-}
-
-.otherPracticeLinkBox a{
-  color:#8fd3ff;
-  font-weight:900;
-  text-decoration:none;
-}
-
-.otherPracticeLinkBox a:hover{
-  text-decoration:underline;
-}
-
-
-.topLinkRow{
-  display:flex;
+.specialMark{
+  display:inline-flex;
   align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin:10px 0 14px;
+  justify-content:center;
+  min-width:58px;
+  padding:4px 8px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:950;
+  margin-left:5px;
+}
+.specialMark.stop{
+  background:rgba(255,122,138,.16);
+  border:1px solid rgba(255,122,138,.65);
+  color:#ffe1e6;
+}
+.specialMark.bind{
+  background:rgba(181,140,255,.16);
+  border:1px solid rgba(181,140,255,.65);
+  color:#efe3ff;
 }
 
-.topLinkRow .readmeLinkBox,
-.topLinkRow .otherPracticeLinkBox{
-  margin:0;
+
+/* ヤーン式・南調整：同じ塔を踏んだ自分と相手をマーク欄で強調 */
+.markChip.sameTowerSelf{
+  border:1px dashed rgba(117,215,255,.62);
+  box-shadow:0 0 0 1px rgba(117,215,255,.08);
+  background:rgba(117,215,255,.045);
 }
 
-@media(max-width:620px){
-  .topLinkRow{
-    align-items:flex-start;
-    flex-direction:column;
-  }
+.markChip.sameTowerPartner{
+  border:1px dashed rgba(170,176,186,.78);
+  box-shadow:0 0 0 1px rgba(170,176,186,.08);
+  background:rgba(170,176,186,.045);
+}
+
+.sameTowerLegend{
+  margin-top:6px;
+  font-size:12px;
+  color:var(--muted);
 }
 
 </style>
@@ -252,24 +256,15 @@
 <body>
 <div class="wrap">
   <h1>ミッシング 1238/4567 通し練習</h1>
-  <div class="sub">解法を <b>KT（りーん）式 / ヤーン式</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答える練習アプリです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
-  <div class="topLinkRow">
-    <div class="readmeLinkBox">
-      <a
-      href="https://github.com/pilsnerdrinker/practice-missing#readme" target="_blank" rel="noopener noreferrer">
-      使い方・仕様（README）を見る </a>
-    </div>
-
-    <div class="otherPracticeLinkBox">
-      他の練習ページ：
-      <a href="https://pilsnerdrinker.github.io/raidshelf/" target="_blank" rel="noopener noreferrer">
-        raidshelf
-      </a>
-    </div>
+  <div class="sub">解法を <b>KT（りーん）式 / ヤーン式・優先順 / ヤーン式・南調整</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答える練習アプリです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
+  <div class="readmeLinkBox">
+    <a
+    href="https://github.com/pilsnerdrinker/practice-missing#readme" target="_blank" rel="noopener noreferrer">
+    使い方・仕様（README）を見る </a>
   </div>
   <div class="grid">
     <section class="card">
-      <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）式</button><button class="methodBtn" data-method="yaan">ヤーン式</button></div></div>
+      <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）式</button><button class="methodBtn" data-method="yaan">ヤーン式・優先順</button><button class="methodBtn" data-method="yaan_south">ヤーン式・南調整</button></div></div>
       <div class="ctrl"><div class="ctrlLabel">難易度</div><div class="btns"><button class="difficultyBtn" data-difficulty="normal">ノーマル</button><button class="difficultyBtn" data-difficulty="hard">ハード</button></div></div>
       <div class="ctrl"><div class="ctrlLabel">自分</div><div class="btns" id="roleBtns"></div></div>
       <div class="btns" style="margin-top:12px"><button class="primary" id="newBtn">新しい問題</button><button class="ghost" id="retryBtn">同じ問題をやり直す</button></div>
@@ -286,7 +281,7 @@
       <div class="stat"><div><b id="total">0</b><span>回答</span></div><div><b id="ok">0</b><span>全問正解</span></div><div><b id="ng">0</b><span>ミスあり</span></div><div><b id="rate">0%</b><span>正答率</span></div></div>
       <button class="ghost" id="resetBtn" style="margin-top:10px;width:100%">成績リセット</button>
       <details open><summary>この版で判定していること</summary><div class="small"><p><b>塔担当：</b>先組は1/2/3/8、後組は4/5/6/7。</p><p><b>回答形式：</b>全員が常に役割を持ちます。左塔・上 / 右塔・上 / 左塔・下 / 右塔・下 の塔踏み、左右頭割り、左右扇誘導、ボス左上/右上での誘導などから選びます。</p><p><b>過去/未来の終焉：</b>偶数回後に近い4人へ円範囲。想定する4人は、<b>タゲサ内の左上/右上に入るタンク・近接</b> と、<b>左右の上側で塔を踏む2人</b> です。</p><p><b>消滅の脚：</b>「自分が塔側/塔の逆側へ避ける」ではなく、ボスの向きを塔側/塔の逆側に誘導して、塔側に半面が来ないようにします。</p><p><b>向き誘導：</b>過去の終焉ならボスを塔側へ向ける、未来の終焉ならボスを塔の逆側へ向ける想定です。</p><p><b>同時処理：</b>消滅の脚そのものは奇数回の塔処理と同時ですが、<b>8人でのボス向き誘導はその前、直前の偶数回の最後に行う</b> 想定で出題します。</p></div></details>
-      <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）式：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）式の組分けルール（H1>H2 / MT>ST / D1>D2 / D3>D4）で先組/後組に分かれます。</p><p><b>ヤーン式：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。</p><p><b>ヤーン式の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
+      <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）式：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）式の組分けルール（H1>H2 / MT>ST / D1>D2 / D3>D4）で先組/後組に分かれます。</p><p><b>ヤーン式・優先順：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。</p><p><b>ヤーン式・南調整：</b>ペアと先組/後組の決め方は①と同じです。初回は左タンヒラ・右DPSを基準にし、2回目以降は直前に同じ塔を踏んだ2人の踏んだ後マーカーを見て、かぶった場合は南側の人が逆塔へ移動して調整します。4回目は必ずTH側・DPS側それぞれでマーカーがかぶるため、H/近接は左塔、T/遠隔は右塔で固定し、各塔で扇が上・円が下になります。3回目後に円なら禁止1/2、扇ならバインド1/2を付与し、8回目はバインド1＝左上、禁止1＝左下、バインド2＝右上、禁止2＝右下で処理します。</p><p><b>ヤーン式①の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
       <details><summary>ギミック共通メモ</summary><div class="small"><p>塔を踏むと、その人の現在の表示パターンの攻撃が発動し、<b>踏んだ4人だけ</b> 次回用の表示に張り替わります。</p><p><b>奇数回</b>に踏んだ4人は、次回用に <b>円2・扇2</b> がランダムで付きます。</p><p><b>偶数回</b>に踏んだ4人は、次回用に <b>頭割り2・円1・扇1</b> がランダムで付きます。</p><p>この版では、そのランダム付与内容も各回の下に表示します。</p><p>偶数塔後は、過去/未来の終焉の円範囲誘導を行い、そのまま次の奇数回に向けたボス向き誘導（消滅の脚用）を先に処理します。</p></div></details>
     </aside>
   </div>
@@ -350,15 +345,57 @@ const state={
 };
 
 function pairsFor(method){
-  return method==="yaan" ? [["MT","H1"],["ST","H2"],["D1","D3"],["D2","D4"]] : [["MT","ST"],["H1","H2"],["D1","D2"],["D3","D4"]];
+  return (method==="yaan" || method==="yaan_south") ? [["MT","H1"],["ST","H2"],["D1","D3"],["D2","D4"]] : [["MT","ST"],["H1","H2"],["D1","D2"],["D3","D4"]];
 }
 function partnerOf(role,method){const pair=pairsFor(method).find(p=>p.includes(role));return pair.find(x=>x!==role);}
 function shuffle(arr){const a=[...arr];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function randomMarksForRound(round){return shuffle(round%2===1?["circle","circle","fan","fan"]:["stack","stack","circle","fan"]);}
+function assignYaanSouthEightMarkers(nextMarksAfter3){
+  const result={};
+  const circles=shuffle(Object.keys(nextMarksAfter3).filter(r=>nextMarksAfter3[r]==="circle"));
+  const fans=shuffle(Object.keys(nextMarksAfter3).filter(r=>nextMarksAfter3[r]==="fan"));
+  if(circles[0]) result[circles[0]]="stop1";
+  if(circles[1]) result[circles[1]]="stop2";
+  if(fans[0]) result[fans[0]]="bind1";
+  if(fans[1]) result[fans[1]]="bind2";
+  return result;
+}
+function specialMarkLabel(key){
+  return ({stop1:"禁止1",stop2:"禁止2",bind1:"バインド1",bind2:"バインド2"})[key] || "";
+}
+function specialMarkClass(key){
+  return key?.startsWith("stop") ? "stop" : key?.startsWith("bind") ? "bind" : "";
+}
 function isTank(r){return r==="MT"||r==="ST";} function isHealer(r){return r==="H1"||r==="H2";} function isMelee(r){return r==="D1"||r==="D2";} function isRanged(r){return r==="D3"||r==="D4";} function isSupport(r){return isTank(r)||isHealer(r);} function isDps(r){return isMelee(r)||isRanged(r);}
 function oddStackPrio(r){return ["H1","H2","MT","ST","D1","D2","D3","D4"].indexOf(r);} // 左寄せ優先
 function yaanPrio(r){return ["H1","H2","MT","ST","D1","D2","D3","D4"].indexOf(r);} 
 function resolveYaanSides(roles){const sorted=[...roles].sort((a,b)=>yaanPrio(a)-yaanPrio(b));return {left:sorted[0], right:sorted[1]};}
+function methodLabel(method){
+  if(method==="kt") return "KT（りーん）式";
+  if(method==="yaan") return "ヤーン式・優先順";
+  if(method==="yaan_south") return "ヤーン式・南調整";
+  return method;
+}
+function towerSideFromActionKey(action){
+  if(action?.startsWith("tower_left")) return "left";
+  if(action?.startsWith("tower_right")) return "right";
+  return null;
+}
+function towerVerticalFromActionKey(action){
+  if(action?.endsWith("_north")) return "north";
+  if(action?.endsWith("_south")) return "south";
+  return null;
+}
+function makeTowerAction(side, vertical){return side&&vertical ? `tower_${side}_${vertical}` : null;}
+function oppositeTowerSide(side){return side==="left" ? "right" : "left";}
+function towerSeqForRound(round){return [1,2,3,8].includes(round) ? [1,2,3,8] : [4,5,6,7];}
+function prevTowerRoundInGroup(round){const seq=towerSeqForRound(round), idx=seq.indexOf(round); return idx>0 ? seq[idx-1] : null;}
+function isFirstTowerOfGroup(round){return prevTowerRoundInGroup(round)===null;}
+function baseYaanSouthSide(role){return isSupport(role) ? "left" : "right";}
+function baseYaanSouthVertical(mark, round){
+  if(round%2===1) return mark==="stack" ? "north" : "south";
+  return mark==="fan" ? "north" : "south";
+}
 function actionLabel(key){const a=ACTIONS.find(x=>x.key===key);return a?a.label:"未選択";}
 function actionType(key){const a=ACTIONS.find(x=>x.key===key);return a?a.type:null;}
 function actionButton(actionKey, selectedKey, round){const a=ACTIONS.find(x=>x.key===actionKey);return `<button class="${selectedKey===actionKey?'selected':''}" onclick="setAnswer('action${round}','${actionKey}')">${a.label}</button>`;}
@@ -366,8 +403,37 @@ function endLabel(e){return e==="past"?"過去の終焉":"未来の終焉";}
 function faceSideFor(e){return e==="past"?"tower":"opposite";} // どちらへ向けるか
 function halfSideLabel(e){return e==="past"?"塔の逆側":"塔側";} // 半面攻撃が来る側
 function sideLabel(s){return s==="tower"?"塔側":s==="opposite"?"塔の逆側":s;}
-function markChip(role,markKey){const mark=MARKS[markKey];return `<span class="markChip"><span class="r">${role}</span><span class="mark ${mark.cls}" style="min-width:auto;padding:2px 8px;font-size:11px">${mark.label}</span></span>`;}
-function marksSummary(map, roles){return roles.map(r=>markChip(r,map[r])).join("");}
+function markChip(role,markKey,focusRoles=[]){
+  const mark=MARKS[markKey];
+  const cls=[
+    "markChip",
+    state.problem?.method==="yaan_south" && focusRoles.includes(role) && role===state.role ? "sameTowerSelf" : "",
+    state.problem?.method==="yaan_south" && focusRoles.includes(role) && role!==state.role ? "sameTowerPartner" : ""
+  ].filter(Boolean).join(" ");
+  return `<span class="${cls}"><span class="r">${role}</span><span class="mark ${mark.cls}" style="min-width:auto;padding:2px 8px;font-size:11px">${mark.label}</span></span>`;
+}
+function marksSummary(map, roles, focusRoles=[]){return roles.map(r=>markChip(r,map[r],focusRoles)).join("");}
+function eightMarkerSummary(roles){
+  const m=state.problem?.yaanSouthEightMarkers || {};
+  return roles.filter(r=>m[r]).map(r=>`<span class="markChip"><span class="r">${r}</span><span class="specialMark ${specialMarkClass(m[r])}">${specialMarkLabel(m[r])}</span></span>`).join("");
+}
+function sameTowerFocusRolesForSouth(round){
+  if(state.problem?.method!=="yaan_south") return [];
+  const active=activeRolesForRound(round);
+  if(!active.includes(state.role)) return [];
+  const myAction=expectedActionYaanSouth(state.role, round);
+  const mySide=towerSideFromActionKey(myAction);
+  if(!mySide) return [];
+  return active.filter(role=>towerSideFromActionKey(expectedActionYaanSouth(role, round))===mySide);
+}
+function sameTowerLegendHTML(round){
+  if(state.problem?.method!=="yaan_south") return "";
+  const active=activeRolesForRound(round);
+  if(!active.includes(state.role)) return "";
+  const roles=sameTowerFocusRolesForSouth(round);
+  const partner=roles.find(r=>r!==state.role);
+  return `<div class="sameTowerLegend">※南調整では、同じ塔を踏む2人を破線で表示しています（水色＝自分 / グレー＝同じ塔の相手${partner ? `［${partner}］` : ""}）。</div>`;
+}
 function orderRolesForDisplay(roles){
   const MARK_CHANGE_ORDER = ["H1","H2","MT","ST","D1","D2","D3","D4"];
   return MARK_CHANGE_ORDER.filter(r=>roles.includes(r));
@@ -376,7 +442,7 @@ function towerDiagramHTML(title,map,roles){const ordered=orderRolesForDisplay(ro
 
 function determineGroups(method, marks){
   const pairs=pairsFor(method), firstRoles=[], secondRoles=[];
-  if(method==="yaan"){
+  if(method==="yaan" || method==="yaan_south"){
     pairs.forEach(pair=>{
       if(pair.some(r=>marks[r]==="stack")) firstRoles.push(...pair);
       else secondRoles.push(...pair);
@@ -417,7 +483,8 @@ function newProblem(){
   const groups=determineGroups(method, marks);
   const endTypes={2:Math.random()<.5?"past":"future",4:Math.random()<.5?"past":"future",6:Math.random()<.5?"past":"future",8:Math.random()<.5?"past":"future"};
   const sim=simulateRoundMarks(marks, groups.firstRoles, groups.secondRoles);
-  state.problem={method, marks, endTypes, firstRoles:groups.firstRoles, secondRoles:groups.secondRoles, roundMarks:sim.roundMarks, nextAssignments:sim.nextAssignments};
+  const yaanSouthEightMarkers = method==="yaan_south" ? assignYaanSouthEightMarkers(sim.nextAssignments[3] || {}) : {};
+  state.problem={method, marks, endTypes, firstRoles:groups.firstRoles, secondRoles:groups.secondRoles, roundMarks:sim.roundMarks, nextAssignments:sim.nextAssignments, yaanSouthEightMarkers};
   state.answers={};
   state.hardStep=0;
   state.hardSelected=null;
@@ -529,8 +596,75 @@ function expectedActionYaan(role, round){
   }
 }
 
+
+function expectedActionYaanSouth(role, round){
+  const marks=state.problem.roundMarks[round];
+  const active=activeRolesForRound(round);
+  const mark=marks[role];
+
+  if(active.includes(role)){
+    if(round===8){
+      const eightMark=state.problem.yaanSouthEightMarkers?.[role];
+      if(eightMark==="bind1") return "tower_left_north";
+      if(eightMark==="stop1") return "tower_left_south";
+      if(eightMark==="bind2") return "tower_right_north";
+      if(eightMark==="stop2") return "tower_right_south";
+    }
+    if(round%2===1){
+      if(mark==="fan") return "tower_left_south";
+      if(mark==="circle") return "tower_right_south";
+      if(isFirstTowerOfGroup(round)) return makeTowerAction(baseYaanSouthSide(role), "north");
+
+      const prev=prevTowerRoundInGroup(round), prevActions={};
+      active.forEach(r=>{ prevActions[r]=expectedActionYaanSouth(r, prev); });
+      const myPrevAction=prevActions[role];
+      const myPrevSide=towerSideFromActionKey(myPrevAction);
+      const myPrevVertical=towerVerticalFromActionKey(myPrevAction);
+      const sameTowerRoles=active.filter(r=>towerSideFromActionKey(prevActions[r])===myPrevSide);
+      const nextMarks=state.problem.nextAssignments[prev] || {};
+      const duplicated=sameTowerRoles.length===2 && nextMarks[sameTowerRoles[0]]===nextMarks[sameTowerRoles[1]];
+      const nextSide=duplicated && myPrevVertical==="south" ? oppositeTowerSide(myPrevSide) : myPrevSide;
+      return makeTowerAction(nextSide, "north");
+    }
+
+    // 4回目は必ず TH と DPS 側それぞれでマーカーがかぶるため固定配置。
+    // H/近接は左塔、T/遠隔は右塔。各塔で扇が上、円が下。
+    if(round===4){
+      const side = (isHealer(role) || isMelee(role)) ? "left" : "right";
+      const vertical = mark==="fan" ? "north" : "south";
+      return makeTowerAction(side, vertical);
+    }
+
+    const vertical=baseYaanSouthVertical(mark, round);
+    if(isFirstTowerOfGroup(round)) return makeTowerAction(baseYaanSouthSide(role), vertical);
+
+    const prev=prevTowerRoundInGroup(round), prevActions={};
+    active.forEach(r=>{ prevActions[r]=expectedActionYaanSouth(r, prev); });
+    const myPrevAction=prevActions[role];
+    const myPrevSide=towerSideFromActionKey(myPrevAction);
+    const myPrevVertical=towerVerticalFromActionKey(myPrevAction);
+    const sameTowerRoles=active.filter(r=>towerSideFromActionKey(prevActions[r])===myPrevSide);
+    const nextMarks=state.problem.nextAssignments[prev] || {};
+    const duplicated=sameTowerRoles.length===2 && nextMarks[sameTowerRoles[0]]===nextMarks[sameTowerRoles[1]];
+    const nextSide=duplicated && myPrevVertical==="south" ? oppositeTowerSide(myPrevSide) : myPrevSide;
+    return makeTowerAction(nextSide, vertical);
+  }
+
+  if(round%2===1){
+    if(isHealer(role)) return "fan_left";
+    if(isTank(role)) return "stack_left";
+    return "stack_right";
+  } else {
+    if(isSupport(role)) return role.startsWith("H") ? "fan_left" : "inside_left";
+    return isRanged(role) ? "fan_right" : "inside_right";
+  }
+}
+
 function expectedAction(role, round){
-  return state.problem.method==="kt" ? expectedActionKT(role, round) : expectedActionYaan(role, round);
+  if(state.problem.method==="kt") return expectedActionKT(role, round);
+  if(state.problem.method==="yaan") return expectedActionYaan(role, round);
+  if(state.problem.method==="yaan_south") return expectedActionYaanSouth(role, round);
+  return expectedActionKT(role, round);
 }
 function expectedActionForMode(role, round){
   const base = expectedAction(role, round);
@@ -602,11 +736,13 @@ function hardMarkChangeHTML(step){
     <div class="marksBox">
       <div class="marksTitle">${round===7||round===8?"この回に塔を踏む4人の現在マーク":"この回に塔を踏む4人のマーク変化"}</div>
       <div class="small" style="margin-top:8px;">踏む前のマーク</div>
-      <div class="markList">${marksSummary(currentMarks, ordered)}</div>
+      <div class="markList">${marksSummary(currentMarks, ordered, sameTowerFocusRolesForSouth(round))}${sameTowerLegendHTML(round)}</div>
+      ${state.problem.method==="yaan_south" && round===8 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（左1／右2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(ordered)}</div>` : ""}
       ${round===7||round===8
         ? `<div class="markArrow">この組はこの回が4回目の塔踏みなので、次回用マーク変化はありません。</div>`
         : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div>
-           <div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, ordered)}</div>
+           <div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, ordered, sameTowerFocusRolesForSouth(round))}</div>
+           ${state.problem.method==="yaan_south" && round===3 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（円＝禁止1/2、扇＝バインド1/2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(ordered)}</div>` : ""}
            <div class="markArrow">${round%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
     </div>`;
 }
@@ -674,10 +810,11 @@ function renderTimeline(){
     <div class="marksBox">
       <div class="marksTitle">${i===7||i===8?"この回に塔を踏む4人の現在マーク":"この回に塔を踏む4人のマーク変化"}</div>
       <div class="small" style="margin-top:8px;">踏む前のマーク</div>
-      <div class="markList">${marksSummary(currentMarks, orderRolesForDisplay(towerRoles))}</div>
+      <div class="markList">${marksSummary(currentMarks, orderRolesForDisplay(towerRoles), sameTowerFocusRolesForSouth(i))}${sameTowerLegendHTML(i)}</div>
+      ${state.problem.method==="yaan_south" && i===8 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（左1／右2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(orderRolesForDisplay(towerRoles))}</div>` : ""}
       ${i===7||i===8
         ? `<div class="markArrow">この組はこの回が4回目の塔踏みなので、4スタック消化後の次回用マーク変化はありません。</div>`
-        : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div><div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, orderRolesForDisplay(towerRoles))}</div><div class="markArrow">${i%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
+        : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div><div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, orderRolesForDisplay(towerRoles), sameTowerFocusRolesForSouth(i))}</div>${state.problem.method==="yaan_south" && i===3 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（円＝禁止1/2、扇＝バインド1/2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(orderRolesForDisplay(towerRoles))}</div>` : ""}<div class="markArrow">${i%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
     </div>
     <div class="actionSectionTitle">この回の主行動を選ぶ</div>
     <div class="actionGrid">${towerActionButtons(getAnswer(`action${i}`),i)}</div>`;
@@ -903,7 +1040,7 @@ function markAnswers(){
 function fullAnswerLines(){
   const lines=[];
   lines.push(`${state.role} は ${groupNameOf(state.role)}（${isFirstGroup(state.role)?"1/2/3/8":"4/5/6/7"}担当）`);
-  lines.push(`解法：${state.problem.method==="kt"?"KT（りーん）式":"ヤーン式"}`);
+  lines.push(`解法：${methodLabel(state.problem.method)}`);
   for(let i=1;i<=8;i++){
     const exp=expectedAction(state.role, i);
     const extra=[];
@@ -927,6 +1064,7 @@ function showAnswer(){
     return;
   }
   setResult(answerHtml, "");
+  markAnswers();
 }
 
 function retry(){state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; state.hardShowAllPositions=false; renderTimeline(); renderHardPanel(); setResult("同じ問題です。もう一度選んでね。", "");}
