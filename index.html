@@ -251,16 +251,62 @@
   color:var(--muted);
 }
 
+
+.topLinkRow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:10px 0 14px;
+}
+
+.topLinkRow .readmeLinkBox,
+.topLinkRow .otherPracticeLinkBox{
+  margin:0;
+}
+
+.otherPracticeLinkBox{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.otherPracticeLinkBox a{
+  color:#8fd3ff;
+  font-weight:900;
+  text-decoration:none;
+}
+
+.otherPracticeLinkBox a:hover{
+  text-decoration:underline;
+}
+
+@media(max-width:620px){
+  .topLinkRow{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+}
+
 </style>
 </head>
 <body>
 <div class="wrap">
   <h1>ミッシング 1238/4567 通し練習</h1>
   <div class="sub">解法を <b>KT（りーん）式 / ヤーン式・優先順 / ヤーン式・南調整</b> で切り替え、初期マークから自分の1〜8回の動きを通しで答える練習アプリです。<br>共通ギミックとして、偶数回後の <b>過去/未来の終焉</b> と、次の奇数塔と同時に来る <b>消滅の脚</b> も入れています。</div>
-  <div class="readmeLinkBox">
-    <a
-    href="https://github.com/pilsnerdrinker/practice-missing#readme" target="_blank" rel="noopener noreferrer">
-    使い方・仕様（README）を見る </a>
+  <div class="topLinkRow">
+    <div class="readmeLinkBox">
+      <a
+      href="https://github.com/pilsnerdrinker/practice-missing#readme" target="_blank" rel="noopener noreferrer">
+      使い方・仕様（README）を見る </a>
+    </div>
+
+    <div class="otherPracticeLinkBox">
+      他の練習ページ：
+      <a href="https://pilsnerdrinker.github.io/raidshelf/" target="_blank" rel="noopener noreferrer">
+        raidshelf
+      </a>
+    </div>
   </div>
   <div class="grid">
     <section class="card">
