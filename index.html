@@ -339,7 +339,7 @@
       <h2 style="font-size:18px;margin:0 0 8px">成績</h2>
       <div class="stat"><div><b id="total">0</b><span>回答</span></div><div><b id="ok">0</b><span>全問正解</span></div><div><b id="ng">0</b><span>ミスあり</span></div><div><b id="rate">0%</b><span>正答率</span></div></div>
       <button class="ghost" id="resetBtn" style="margin-top:10px;width:100%">成績リセット</button>
-      <details open><summary>この版で判定していること</summary><div class="small"><p><b>塔担当：</b>先組は1/2/3/8、後組は4/5/6/7。</p><p><b>回答形式：</b>全員が常に役割を持ちます。左塔・上 / 右塔・上 / 左塔・下 / 右塔・下 の塔踏み、左右頭割り、左右扇誘導、ボス左上/右上での誘導などから選びます。</p><p><b>過去/未来の終焉：</b>偶数回後に近い4人へ円範囲。想定する4人は、<b>タゲサ内の左上/右上に入るタンク・近接</b> と、<b>左右の上側で塔を踏む2人</b> です。</p><p><b>消滅の脚：</b>「自分が塔側/塔の逆側へ避ける」ではなく、ボスの向きを塔側/塔の逆側に誘導して、塔側に半面が来ないようにします。</p><p><b>向き誘導：</b>過去の終焉ならボスを塔側へ向ける、未来の終焉ならボスを塔の逆側へ向ける想定です。</p><p><b>同時処理：</b>消滅の脚そのものは奇数回の塔処理と同時ですが、<b>8人でのボス向き誘導はその前、直前の偶数回の最後に行う</b> 想定で出題します。</p></div></details>
+      <details open><summary>この版で判定していること</summary><div class="small"><p><b>塔担当：</b>先組は1/2/3/8、後組は4/5/6/7。</p><p><b>回答形式：</b>全員が常に役割を持ちます。左塔・上 / 右塔・上 / 左塔・下 / 右塔・下 の塔踏み、左右頭割り、左右扇誘導、ボス左上/右上での誘導などから選びます。</p><p><b>過去/未来の終焉：</b>偶数回後に近い4人へ円範囲。想定する4人は、<b>タゲサ内の左上/右上に入るタンク・近接</b> と、<b>左右の上側で塔を踏む2人</b> です。</p><p><b>消滅の脚：</b>「自分が塔側/塔の逆側へ避ける」ではなく、ボスの向きを塔側/塔の逆側に誘導して、塔側に半面が来ないようにします。</p><p><b>向き誘導：</b>過去の終焉ならボスを塔側へ向ける、未来の終焉ならボスを塔の逆側へ向ける想定です。</p><p><b>同時処理：</b>消滅の脚そのものは奇数回の塔処理と同時ですが、<b>8人でのボス向き誘導はその前、直前の偶数回の最後に行う</b> 想定で出題します。最後だけは <b>A側（北側）に集合してボスをA側（北側）に向けたあと</b>、過去/未来に応じて安全側へ集合します。</p></div></details>
       <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）式：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）式の組分けルール（H1>H2 / MT>ST / D1>D2 / D3>D4）で先組/後組に分かれます。</p><p><b>ヤーン式・優先順：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。</p><p><b>ヤーン式・南調整：</b>ペアと先組/後組の決め方は①と同じです。初回は左タンヒラ・右DPSを基準にし、2回目以降は直前に同じ塔を踏んだ2人の踏んだ後マーカーを見て、かぶった場合は南側の人が逆塔へ移動して調整します。4回目は必ずTH側・DPS側それぞれでマーカーがかぶるため、H/近接は左塔、T/遠隔は右塔で固定し、各塔で扇が上・円が下になります。3回目後に円なら禁止1/2、扇ならバインド1/2を付与し、8回目はバインド1＝左上、禁止1＝左下、バインド2＝右上、禁止2＝右下で処理します。</p><p><b>ヤーン式①の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
       <details><summary>ギミック共通メモ</summary><div class="small"><p>塔を踏むと、その人の現在の表示パターンの攻撃が発動し、<b>踏んだ4人だけ</b> 次回用の表示に張り替わります。</p><p><b>奇数回</b>に踏んだ4人は、次回用に <b>円2・扇2</b> がランダムで付きます。</p><p><b>偶数回</b>に踏んだ4人は、次回用に <b>頭割り2・円1・扇1</b> がランダムで付きます。</p><p>この版では、そのランダム付与内容も各回の下に表示します。</p><p>偶数塔後は、過去/未来の終焉の円範囲誘導を行い、そのまま次の奇数回に向けたボス向き誘導（消滅の脚用）を先に処理します。</p></div></details>
     </aside>
@@ -387,7 +387,11 @@ const HARD_ACTIONS = {
 
   // 消滅の脚誘導：上が塔の逆、下が塔側
   safe_opposite:{label:"脚：塔の逆へ",x:50,y:25.5},
-  safe_tower:{label:"脚：塔側へ",x:50,y:45}
+  safe_tower:{label:"脚：塔側へ",x:50,y:45},
+
+  // 最後の処理：A集合後、消滅の脚が来ない側へ集合
+  final_north:{label:"最後：A側（北）で回避",x:50,y:25.5},
+  final_south:{label:"最後：C側（南）で回避",x:50,y:45}
 };
 const state={
   method:localStorage.getItem("missingMethod")||"kt",
@@ -462,6 +466,8 @@ function endLabel(e){return e==="past"?"過去の終焉":"未来の終焉";}
 function faceSideFor(e){return e==="past"?"tower":"opposite";} // どちらへ向けるか
 function halfSideLabel(e){return e==="past"?"塔の逆側":"塔側";} // 半面攻撃が来る側
 function sideLabel(s){return s==="tower"?"塔側":s==="opposite"?"塔の逆側":s;}
+function finalGatherKey(e){return e==="future"?"south":"north";}
+function finalGatherLabel(k){return k==="south"?"C側（南側）":"A側（北側）";}
 function markChip(role,markKey,focusRoles=[]){
   const mark=MARKS[markKey];
   const method=state.problem?.method;
@@ -767,16 +773,17 @@ function hardSteps(){
 }
 function hardExpected(step){
   if(step.type === "tower") return expectedActionForMode(state.role, step.round);
-  const key = step.after === 8 ? faceSideFor(state.problem.endTypes[8]) : faceSideFor(state.problem.endTypes[step.after]);
+  if(step.after === 8) return finalGatherKey(state.problem.endTypes[8]) === "north" ? "final_north" : "final_south";
+  const key = faceSideFor(state.problem.endTypes[step.after]);
   return key === "tower" ? "safe_tower" : "safe_opposite";
 }
 function hardTitle(step){
   if(step.type === "tower") return `${step.round}回目：立ち位置を選ぶ`;
-  if(step.round === "final") return `最後の消滅の脚：誘導位置を選ぶ`;
+  if(step.round === "final") return `最後：集合位置を選ぶ`;
   return `${step.after}回目後 → ${step.round}回目の消滅の脚：誘導位置を選ぶ`;
 }
 function hardOptions(step){
-  if(step.type === "safe") return ["safe_tower","safe_opposite"];
+  if(step.type === "safe") return step.after === 8 ? ["final_north","final_south"] : ["safe_tower","safe_opposite"];
   return ["tower_left_north","tower_right_north","tower_left_south","tower_right_south","stack_left","stack_right","fan_left_upper","fan_right_upper","fan_left_lower","inside_left","inside_right"];
 }
 function hardPointLabel(key){
@@ -797,6 +804,10 @@ function hardCastHTML(step){
   if(step.type === "safe"){
     const castRound = step.after === 8 ? 8 : step.after;
     const endType=state.problem.endTypes[castRound];
+    if(step.after === 8){
+      return `<div class="castLine">詠唱：<b>${endLabel(endType)}</b></div>
+        <div class="castLine">8回目の塔終了後、全員Aに集合し、ボスを北に向ける。</div>`;
+    }
     return `<div class="castLine">詠唱：<b>${endLabel(endType)}</b></div>`;
   }
   return "";
@@ -902,7 +913,7 @@ function renderTimeline(){
         html += `<div class="castLine">次の${nextOdd}回目に向けた消滅の脚のボス誘導</div><div class="small" style="margin-top:10px;">奇数回の塔処理の前に、8人でボスの向きを固定する。塔側に半面が来ないように、どちらへ向けるか選ぶ。</div><div class="choiceGrid"><button class="${aSafe==='tower'?'selected':''}" onclick="setAnswer('safe${nextOdd}','tower')">塔側へ向ける</button><button class="${aSafe==='opposite'?'selected':''}" onclick="setAnswer('safe${nextOdd}','opposite')">塔の逆側へ向ける</button></div>`;
       } else {
         const aFinal=getAnswer("safeFinal");
-        html += `<div class="castLine">最後の消滅の脚に向けたボス誘導</div><div class="small" style="margin-top:10px;">塔側に半面が来ないように、ボスをどちらへ向けるか選ぶ。</div><div class="choiceGrid"><button class="${aFinal==='tower'?'selected':''}" onclick="setAnswer('safeFinal','tower')">塔側へ向ける</button><button class="${aFinal==='opposite'?'selected':''}" onclick="setAnswer('safeFinal','opposite')">塔の逆側へ向ける</button></div>`;
+        html += `<div class="castLine">最後の集合位置</div><div class="small" style="margin-top:10px;">最後の消滅の脚は <b>A側（北側）に集合してボスをA側（北側）に向ける</b>。その後、<b>未来ならC側（南）</b>、<b>過去ならA側（北）</b> へ集合する。</div><div class="choiceGrid"><button class="${aFinal==='north'?'selected':''}" onclick="setAnswer('safeFinal','north')">A側（北側）に集合</button><button class="${aFinal==='south'?'selected':''}" onclick="setAnswer('safeFinal','south')">C側（南側）に集合</button></div>`;
       }
     }
     if(i===3||i===5||i===7){
@@ -911,7 +922,7 @@ function renderTimeline(){
     }
     if(i===8){
       const endType=state.problem.endTypes[8];
-      html += `<div class="castLine">最後の消滅の脚：直前は <b>${endLabel(endType)}</b></div><div class="small" style="margin-top:10px;">向きの選択はこの回の下で行います。</div>`;
+      html += `<div class="castLine">最後の過去/未来：<b>${endLabel(endType)}</b></div><div class="small" style="margin-top:10px;">最後の消滅の脚は A側（北側）に集合してボスをA側（北側）に向けます。その後の集合位置をこの回の下で選びます。</div>`;
     }
     step.innerHTML=html; box.appendChild(step);
   }
@@ -921,8 +932,9 @@ function renderTimeline(){
 function hardAllPositionRoles(step){
   const result={};
   if(step.type==="safe"){
-    const key = step.after === 8 ? faceSideFor(state.problem.endTypes[8]) : faceSideFor(state.problem.endTypes[step.after]);
-    const safeKey = key === "tower" ? "safe_tower" : "safe_opposite";
+    const safeKey = step.after === 8
+      ? (finalGatherKey(state.problem.endTypes[8]) === "north" ? "final_north" : "final_south")
+      : (faceSideFor(state.problem.endTypes[step.after]) === "tower" ? "safe_tower" : "safe_opposite");
     result[safeKey]=["全員"];
     return result;
   }
@@ -980,7 +992,9 @@ function renderHardPanel(){
     ? (state.hardSelected===expected ? "正解。次へ進めます。" : `不正解。正解は「${hardPointLabel(expected)}」です。`)
     : "図の中から正しい立ち位置を選んでください。";
   const stepHelp = step.type === "safe"
-    ? "消滅の脚のため、ボスを塔側/塔の逆側のどちらへ向けるかを選びます。"
+    ? (step.after === 8
+      ? "最後の消滅の脚はA側（北側）に集合して、ボスをA側（北側）に向けます。その後、消滅の脚を避けるためにA側（北）またはC側（南）に集合します。"
+      : "消滅の脚のため、ボスを塔側/塔の逆側のどちらへ向けるかを選びます。")
     : "左塔/右塔、塔外誘導、ボス左上/右上の候補点から、この回の自分の立ち位置を選びます。";
   panel.innerHTML = `
     <div class="hardStage">
@@ -1105,7 +1119,7 @@ function markAnswers(){
         else if(btn.classList.contains("selected")) btn.classList.add("wrong");
       }
       if(i===8 && onclick.includes("safeFinal")){
-        const expectedSafe=faceSideFor(state.problem.endTypes[8]);
+        const expectedSafe=finalGatherKey(state.problem.endTypes[8]);
         if(onclick.includes(`'${expectedSafe}'`)) btn.classList.add("correct");
         else if(btn.classList.contains("selected")) btn.classList.add("wrong");
       }
@@ -1123,11 +1137,14 @@ function fullAnswerLines(){
     if(i%2===0){
       extra.push(`${endLabel(state.problem.endTypes[i])}`);
       if(i<8) extra.push(`次の消滅の脚：ボスを${sideLabel(faceSideFor(state.problem.endTypes[i]))}へ向ける`);
-      else extra.push(`最後の消滅の脚：ボスを${sideLabel(faceSideFor(state.problem.endTypes[8]))}へ向ける`);
+      else {
+        extra.push(`最後の消滅の脚：A側（北側）に集合してボスをA側（北側）に向ける`);
+        extra.push(`最後：${finalGatherLabel(finalGatherKey(state.problem.endTypes[8]))}に集合`);
+      }
     }
     lines.push(`${i}回目：${actionLabel(exp)}${extra.length?` / ${extra.join(' / ')}`:''}`);
   }
-  lines.push(`最後の消滅の脚：ボスを${sideLabel(faceSideFor(state.problem.endTypes[8]))}へ向ける（半面は${halfSideLabel(state.problem.endTypes[8])}へ出る）`);
+  lines.push(`最後の消滅の脚：A側（北側）に集合してボスをA側（北側）に向ける / 最後は ${finalGatherLabel(finalGatherKey(state.problem.endTypes[8]))} に集合（半面は${halfSideLabel(state.problem.endTypes[8])}へ出る）`);
   return lines;
 }
 
