@@ -31,7 +31,7 @@
 .hardArena::before,.hardArena::after{display:none}
 .hardTower{
   position:absolute;
-  width:25%;
+  width:35%;
   aspect-ratio:1/1;
   border:3px solid rgba(255,255,255,.82);
   border-radius:50%;
@@ -43,7 +43,7 @@
 .hardTower.right{left:73%;top:67%}
 .hardBossRing{
   position:absolute;
-  width:40%;
+  width:44%;
   aspect-ratio:1/1;
   border:3px solid rgba(255,80,80,.95);
   border-radius:50%;
@@ -366,24 +366,25 @@ const ACTIONS=[
 ];
 
 const HARD_ACTIONS = {
-  // 塔踏み：4点とも白い塔円のぎりぎり内側に収める
-  tower_left_north:{label:"左塔・上",x:34,y:58},
-  tower_right_north:{label:"右塔・上",x:66,y:58},
-  tower_left_south:{label:"左塔・下",x:20,y:78},
-  tower_right_south:{label:"右塔・下",x:80,y:78},
+  // 塔踏み：左塔は奇数回に「左塔・中」も使用
+  tower_left_north:{label:"左塔・上",x:27,y:46.5},
+  tower_left_middle:{label:"左塔・中",x:27,y:64},
+  tower_right_north:{label:"右塔・上",x:73,y:46.5},
+  tower_left_south:{label:"左塔・下",x:27,y:87.5},
+  tower_right_south:{label:"右塔・下",x:73,y:87.5},
 
   // 頭割り：塔とボスタゲサの間寄り
-  stack_left:{label:"左頭割り",x:38,y:51},
-  stack_right:{label:"右頭割り",x:62,y:51},
+  stack_left:{label:"左頭割り",x:40,y:47.5},
+  stack_right:{label:"右頭割り",x:60,y:47.5},
 
-  // 扇誘導：上下寄せが分かるように外側へ
-  fan_left_upper:{label:"左上扇誘導",x:24,y:48.8},
-  fan_left_lower:{label:"左下扇誘導",x:14,y:87},
-  fan_right_upper:{label:"右上扇誘導",x:76,y:48},
+  // 扇誘導：左上=左塔左に外接、右上=右塔右に外接、左下=左塔下に外接より少し下
+  fan_left_upper:{label:"左上扇誘導",x:5,y:67},
+  fan_left_lower:{label:"左下扇誘導",x:27,y:97},
+  fan_right_upper:{label:"右上扇誘導",x:95,y:67},
 
-  // 過去/未来の円範囲誘導：ボスタゲサ内の上側
-  inside_left:{label:"ボス左上",x:40,y:18},
-  inside_right:{label:"ボス右上",x:60,y:18},
+  // 過去/未来の円範囲誘導：ボスタゲサ上部の内接位置
+  inside_left:{label:"ボス左上",x:36,y:10.5},
+  inside_right:{label:"ボス右上",x:64,y:10.5},
 
   // 消滅の脚誘導：上が塔の逆、下が塔側
   safe_opposite:{label:"脚：塔の逆へ",x:50,y:25.5},
@@ -751,6 +752,7 @@ function expectedAction(role, round){
 function expectedActionForMode(role, round){
   const base = expectedAction(role, round);
   if(state.difficulty !== "hard") return base;
+  if(base === "tower_left_north") return round % 2 === 1 ? "tower_left_middle" : "tower_left_north";
   if(base === "fan_left") return round % 2 === 1 ? "fan_left_lower" : "fan_left_upper";
   if(base === "fan_right") return "fan_right_upper";
   return base;
@@ -784,7 +786,7 @@ function hardTitle(step){
 }
 function hardOptions(step){
   if(step.type === "safe") return step.after === 8 ? ["final_north","final_south"] : ["safe_tower","safe_opposite"];
-  return ["tower_left_north","tower_right_north","tower_left_south","tower_right_south","stack_left","stack_right","fan_left_upper","fan_right_upper","fan_left_lower","inside_left","inside_right"];
+  return ["tower_left_north","tower_left_middle","tower_right_north","tower_left_south","tower_right_south","stack_left","stack_right","fan_left_upper","fan_right_upper","fan_left_lower","inside_left","inside_right"];
 }
 function hardPointLabel(key){
   return HARD_ACTIONS[key]?.label || key;
