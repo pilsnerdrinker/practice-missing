@@ -258,6 +258,18 @@
   background:rgba(170,176,186,.045);
 }
 
+.markChip.ktPairSelf{
+  border:3px double rgba(117,215,255,.92);
+  box-shadow:0 0 0 1px rgba(117,215,255,.10);
+  background:rgba(117,215,255,.055);
+}
+
+.markChip.ktPairPartner{
+  border:3px double rgba(255,255,255,.82);
+  box-shadow:0 0 0 1px rgba(255,255,255,.08);
+  background:rgba(255,255,255,.035);
+}
+
 .sameTowerLegend{
   margin-top:6px;
   font-size:12px;
@@ -301,6 +313,221 @@
   }
 }
 
+
+/* practice mode */
+.practicePanel{margin-top:14px}
+.practiceShell{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:12px;align-items:start}
+@media(max-width:920px){.practiceShell{grid-template-columns:1fr}}
+.practiceStage{border:1px solid var(--line);border-radius:16px;background:#101827;padding:12px}
+.practiceHeader{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:8px}
+.practiceTitle{font-weight:950}.practiceSub{font-size:12px;color:var(--muted)}
+.hardHeaderRight,.practiceHeaderRight{display:flex;align-items:center;gap:8px}
+.slideNavBtn{min-width:28px;height:28px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--text);font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;font-size:16px;position:relative}.slideNavBtn span{display:flex;align-items:center;justify-content:center;width:100%;height:100%;line-height:1;transform:translateY(-1px)}
+.slideNavBtn:disabled{opacity:.35;cursor:not-allowed}
+.practiceControls,.practiceModeToggle{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.practiceControls button,.practiceModeToggle button{font-size:13px;padding:8px 10px}.practiceControls .practiceStartBtn{font-size:17px;padding:13px 22px;border-radius:16px;box-shadow:0 0 0 2px rgba(114,214,255,.20),0 10px 26px rgba(79,140,255,.28);background:linear-gradient(135deg,#57a2ff,#7ee0ff);color:#07111f}
+.practiceFixedTowerLabel{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.035);color:var(--muted);font-size:13px;font-weight:900;cursor:pointer}.practiceFixedTowerLabel input{accent-color:#ffd166;transform:translateY(1px)}
+.practiceModeToggle button.active{outline:3px solid var(--accent)}
+.practiceBars{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 10px}
+@media(max-width:600px){.practiceBars{grid-template-columns:1fr}}
+.practiceBarBox{border:1px solid rgba(255,255,255,.09);border-radius:12px;background:#0d1421;padding:7px}
+.practiceBarLabel{font-size:11px;font-weight:900;color:var(--muted);margin-bottom:5px}
+.practiceBarTrack{height:9px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+.practiceBarFill{height:100%;width:0%;border-radius:999px;background:linear-gradient(90deg,#72d6ff,#4f8cff);transition:width .08s linear}
+.practiceArena{position:relative;width:min(100%,720px);margin:10px auto 0;border:1px solid #33435f;border-radius:14px;background:linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.035) 75%),linear-gradient(45deg,rgba(255,255,255,.035) 25%,transparent 25%,transparent 75%,rgba(255,255,255,.035) 75%),#0b111d;background-size:20px 20px;background-position:0 0,10px 10px;overflow:hidden;padding-bottom:14px}
+.practiceNorthLabel{position:absolute;left:50%;top:10px;transform:translateX(-50%);z-index:10;padding:5px 11px;border-radius:999px;border:1px solid rgba(143,211,255,.45);background:rgba(10,14,23,.82);color:#dff4ff;font-weight:1000;font-size:13px;pointer-events:none}
+.practiceBossRing{position:absolute;width:44%;aspect-ratio:1/1;border:3px solid rgba(255,80,80,.95);border-radius:50%;background:rgba(255,50,50,.035);left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:1}
+.practiceTower{position:absolute;width:35%;aspect-ratio:1/1;border:3px solid rgba(255,255,255,.82);border-radius:50%;background:rgba(255,255,255,.025);transform:translate(-50%,-50%);pointer-events:none;z-index:1}
+.practicePos{position:absolute;transform:translate(-50%,-50%);border:3px solid #32e653;background:rgba(255,255,255,.045);color:transparent;border-radius:50%;width:28px;height:28px;min-width:0;min-height:0;padding:0;font-size:0;display:block;z-index:4}
+.practicePos:hover{filter:brightness(1.16);transform:translate(-50%,-50%) scale(1.12)}
+.practicePos.selected{outline:4px solid rgba(255,210,74,.95);background:rgba(255,210,74,.18)}
+.practicePos.correct{background:#25d94a;border-color:#dfffe7;outline:4px solid rgba(113,227,155,.55)}
+.practicePos.wrong{background:#d94154;border-color:#ffd7dd;outline:4px solid rgba(255,122,138,.55)}
+.practicePointLabel{position:absolute;left:50%;top:-27px;transform:translateX(-50%);white-space:nowrap;font-size:11px;line-height:1.2;color:#eaf4ff;font-weight:900;text-shadow:0 1px 4px #000;pointer-events:none}
+.practiceRoleLabel{position:absolute;left:50%;top:31px;transform:translateX(-50%);white-space:nowrap;font-size:11px;line-height:1.15;color:#fff;font-weight:1000;text-shadow:0 1px 4px #000;pointer-events:none}.practiceRoleLine{display:flex;align-items:center;justify-content:center;gap:4px}
+.practiceRoleSymbol{display:inline-flex;align-items:center;justify-content:center;min-width:14px;font-size:13px;font-weight:1000;color:#fff7bf}
+.practicePos.showAllRoleLabel{
+  width:46px;
+  height:46px;
+  border-color:#dfffe7;
+  background:rgba(37,217,74,.26);
+  color:#eafff0;
+  font-size:11px;
+  font-weight:950;
+  line-height:1.05;
+  text-align:center;
+  white-space:normal;
+  text-shadow:0 1px 3px #000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2px;
+}
+.practicePos.selfPosition{
+  outline:4px solid rgba(255,209,102,.98);
+  border-color:#fff2b0;
+  background:rgba(255,209,102,.26);
+  box-shadow:0 0 0 2px rgba(255,209,102,.20), 0 0 16px rgba(255,209,102,.25);
+}
+.practicePos.answerOverlay{
+  pointer-events:none;
+  z-index:8;
+}
+.practicePos.answerOverlay .practicePointLabel{display:none;}
+.practicePos.answerOverlay .practiceRoleLabel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:2px;white-space:normal;text-align:center;font-size:11px;line-height:1.05;}
+.practicePos.answerOverlay .practiceRoleLine{display:flex;align-items:center;justify-content:center;gap:3px;}
+.practicePos.answerOverlay.wrong{
+  background:#d94154;
+  border-color:#ffd7dd;
+  outline:4px solid rgba(255,122,138,.55);
+}
+.practicePos.answerOverlay.correct{
+  background:#25d94a;
+  border-color:#dfffe7;
+  outline:4px solid rgba(113,227,155,.55);
+}
+.practicePos.carryOverlay{
+  pointer-events:none;
+  z-index:7;
+  min-width:76px;
+  min-height:46px;
+}
+.practicePos.carryOverlay .practiceRoleLabel{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:100%;
+  padding:2px;
+  white-space:normal;
+  text-align:center;
+  font-size:11px;
+  line-height:1.05;
+}
+.practiceCarryMarks{
+  position:absolute;
+  left:50%;
+  bottom:calc(100% + 6px);
+  transform:translateX(-50%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+}
+.practiceCarryMarks .mark,
+.practiceCarryMarks .specialMark{
+  white-space:nowrap;
+  box-shadow:0 4px 10px rgba(0,0,0,.24);
+}
+
+/* 実戦練習：正解表示・次マーク表示の黄色強調 */
+.practicePos.answerOverlay.answerSelfPosition{
+  width:58px;
+  height:58px;
+  border:5px solid rgba(255,241,166,.98) !important;
+  background:rgba(255,209,102,.42) !important;
+  outline:0 !important;
+  box-shadow:0 0 0 3px rgba(255,209,102,.22),0 0 18px rgba(255,209,102,.38) !important;
+}
+.practicePos.answerOverlay.answerPartnerPosition{
+  width:54px;
+  height:54px;
+  border:3px solid rgba(255,209,102,.92) !important;
+  background:rgba(148,154,166,.30) !important;
+  outline:0 !important;
+  box-shadow:0 0 0 1px rgba(255,209,102,.16) !important;
+}
+.practicePos.answerOverlay.answerSelfPosition .practiceRoleLabel,
+.practicePos.answerOverlay.answerPartnerPosition .practiceRoleLabel{
+  font-size:11px;
+  line-height:1.05;
+}
+.practicePos.answerOverlay.answerPartnerPosition .hardRoleName{
+  color:#e3e8f2;
+  text-shadow:0 1px 3px #000;
+}
+.practicePos.carryOverlay.carrySelf,
+.practicePos.carryOverlay.carryPartner{
+  border-radius:50%;
+  outline:0 !important;
+  color:#fff8cc;
+}
+.practicePos.carryOverlay.carrySelf{
+  width:58px;
+  height:58px;
+  min-width:58px;
+  min-height:58px;
+  border:5px solid rgba(255,241,166,.98);
+  background:rgba(255,209,102,.42);
+  box-shadow:0 0 0 3px rgba(255,209,102,.22),0 0 18px rgba(255,209,102,.34);
+}
+.practicePos.carryOverlay.carryPartner{
+  width:54px;
+  height:54px;
+  min-width:54px;
+  min-height:54px;
+  border:3px solid rgba(255,209,102,.92);
+  background:rgba(148,154,166,.30);
+  box-shadow:0 0 0 1px rgba(255,209,102,.16);
+}
+.practicePos.carryOverlay.carryPartner .hardRoleName{
+  color:#e3e8f2;
+  text-shadow:0 1px 3px #000;
+}
+.practiceMapSquare{position:relative;width:100%;aspect-ratio:1/1;}
+.practiceCastOverlay{position:absolute;left:50%;top:39%;transform:translate(-50%,-50%);z-index:11;padding:10px 18px;border-radius:14px;border:1px solid rgba(114,214,255,.55);background:rgba(19,40,82,.92);color:#f5fbff;font-size:19px;font-weight:1000;text-align:center;line-height:1.35;pointer-events:none;box-shadow:0 0 0 1px rgba(114,214,255,.18),0 0 22px rgba(114,214,255,.28),0 12px 32px rgba(0,0,0,.28)}
+.practiceCastOverlay .sub{display:block;margin-top:4px;font-size:14px;color:#d8e9ff;font-weight:900}.practiceCastOverlay b{color:#aee6ff;text-shadow:0 0 10px rgba(114,214,255,.45)}
+
+.practiceCountdown{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:12;display:flex;align-items:center;justify-content:center;min-width:110px;height:110px;padding:0 20px;border-radius:18px;border:3px solid rgba(255,240,170,.88);background:rgba(10,14,23,.82);font-size:72px;font-weight:1000;color:#fff2b0;text-shadow:0 3px 16px #000;pointer-events:none}
+.practiceResultOverlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:13;padding:12px 18px;border-radius:999px;font-size:24px;font-weight:1000;text-shadow:0 2px 10px #000;pointer-events:none}
+.practiceResultOverlay.good{color:#d9ffe5;background:rgba(113,227,155,.18);border:2px solid rgba(113,227,155,.8)}
+.practiceResultOverlay.bad{color:#ffe1e6;background:rgba(255,122,138,.18);border:2px solid rgba(255,122,138,.8)}
+.practiceCenterStartBtn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:14;min-width:180px;padding:18px 26px;border-radius:18px;border:2px solid rgba(114,214,255,.75);background:linear-gradient(135deg,rgba(79,140,255,.96),rgba(126,224,255,.96));color:#08111d;font-size:28px;font-weight:1000;box-shadow:0 0 0 3px rgba(114,214,255,.18),0 18px 40px rgba(0,0,0,.35);cursor:pointer}
+.practiceRunSummaryOverlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:15;width:min(88%,760px);max-height:84%;overflow:auto;padding:14px 16px;border-radius:16px;border:1px solid rgba(114,214,255,.38);background:rgba(8,13,24,.94);box-shadow:0 16px 36px rgba(0,0,0,.34)}
+.practiceRunSummaryTitle{font-size:18px;font-weight:1000;color:#eef7ff;margin-bottom:10px;text-align:center}
+.practiceRunSummaryGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.practiceRunSummaryCol{display:grid;gap:8px}
+.practiceRunSummaryItem{border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.03);padding:8px 10px;font-size:12px;line-height:1.45;color:#d4deec}
+.practiceRunSummaryItem .idx{font-weight:1000;color:#eef7ff}
+.practiceRunSummaryItem .ok{color:var(--good);font-weight:1000}
+.practiceRunSummaryItem .ng{color:var(--bad);font-weight:1000}
+.practiceRunSummaryHint{margin-top:10px;text-align:center;font-size:12px;color:var(--muted)}
+.practiceMarksGrid .markChip.practiceFocusSelf{border:2px solid rgba(117,215,255,.88);box-shadow:0 0 0 2px rgba(117,215,255,.12);background:rgba(117,215,255,.06)}
+.practiceMarksGrid .markChip.practiceFocusPartner{border:2px solid rgba(255,255,255,.7);box-shadow:0 0 0 2px rgba(255,255,255,.06);background:rgba(255,255,255,.035)}
+.practiceMarksGrid .markChip.practiceFocusSelfDash{border:2px dashed rgba(117,215,255,.88);box-shadow:0 0 0 2px rgba(117,215,255,.12);background:rgba(117,215,255,.05)}
+.practiceMarksGrid .markChip.practiceFocusPartnerDash{border:2px dashed rgba(255,255,255,.88);box-shadow:0 0 0 2px rgba(255,255,255,.08);background:rgba(255,255,255,.04)}
+.practiceLog{border:1px solid var(--line);border-radius:16px;background:#101827;padding:12px;max-height:720px;overflow:auto}
+.practiceLogTitle{font-weight:950;margin-bottom:8px}
+.practiceLogItem{display:flex;justify-content:space-between;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);padding:7px 0;font-size:12px;color:var(--muted);line-height:1.35}
+.practiceLogItem .ok{color:var(--good);font-weight:1000}.practiceLogItem .ng{color:var(--bad);font-weight:1000}
+.practiceMarkBox{margin-top:8px}
+.practiceMarksOverlay{position:relative;left:auto;bottom:auto;transform:none;z-index:1;width:min(88%,760px);margin:8px auto 0;padding:8px 10px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(11,17,29,.82);pointer-events:none}
+.practiceMarksTitle{font-size:11px;font-weight:1000;color:#dbe9ff;margin-bottom:6px;text-align:center}
+.practiceMarksGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px 8px}
+.practiceMarksGrid .markChip{justify-content:center}
+
+
+body.practiceModeActive .grid{
+  grid-template-columns:1fr;
+}
+.practiceModeActive .practiceShell{
+  grid-template-columns:1fr;
+}
+.practiceModeActive .practiceArena{
+  width:min(100%,900px);
+}
+.practiceModeActive .practiceLog{
+  max-height:220px;
+}
+.practiceModeActive #players{
+  width:min(100%,640px);
+  margin-left:0;
+  margin-right:0;
+}
+
 </style>
 </head>
 <body>
@@ -324,7 +551,7 @@
   <div class="grid">
     <section class="card">
       <div class="ctrl"><div class="ctrlLabel">解法</div><div class="btns"><button class="methodBtn" data-method="kt">KT（りーん）式</button><button class="methodBtn" data-method="yaan">ヤーン式・優先順</button><button class="methodBtn" data-method="yaan_south">ヤーン式・南調整</button></div></div>
-      <div class="ctrl"><div class="ctrlLabel">難易度</div><div class="btns"><button class="difficultyBtn" data-difficulty="normal">ノーマル</button><button class="difficultyBtn" data-difficulty="hard">ハード</button></div></div>
+      <div class="ctrl"><div class="ctrlLabel">モード</div><div class="btns"><button class="difficultyBtn" data-difficulty="normal">ギミック理解</button><button class="difficultyBtn" data-difficulty="hard">位置確認</button><button class="difficultyBtn" data-difficulty="practice">実戦練習</button></div></div>
       <div class="ctrl"><div class="ctrlLabel">自分</div><div class="btns" id="roleBtns"></div></div>
       <div class="btns" style="margin-top:12px"><button class="primary" id="newBtn">新しい問題</button><button class="ghost" id="retryBtn">同じ問題をやり直す</button></div>
       <div class="small" style="margin-top:8px;">最初のマーク（下の8人カードが今回の初期状態です）</div>
@@ -332,6 +559,7 @@
       <div class="timelineMini" id="timelineMini"><span class="tmini">1塔</span><span class="tmini">2塔→過去/未来</span><span class="tmini">3塔+消滅の脚</span><span class="tmini">4塔→過去/未来</span><span class="tmini">5塔+消滅の脚</span><span class="tmini">6塔→過去/未来</span><span class="tmini">7塔+消滅の脚</span><span class="tmini">8塔→過去/未来→消滅の脚</span></div>
       <div class="timeline" id="timeline"></div>
       <div class="hardPanel" id="hardPanel"></div>
+      <div class="practicePanel hidden" id="practicePanel"></div>
       <div class="btns" style="margin-top:14px"><button class="primary" id="checkBtn">通し判定</button><button id="showBtn">正解を表示</button><button class="ghost hidden" id="resetHardTopBtn" onclick="resetHardRun()">最初から</button><button class="ghost hidden" id="newHardBottomBtn" onclick="newProblem()">新しい問題</button></div>
       <div class="result" id="result">初期マークを見て、1〜8回の動きを通しで選んでね。</div>
     </section>
@@ -340,7 +568,7 @@
       <div class="stat"><div><b id="total">0</b><span>回答</span></div><div><b id="ok">0</b><span>全問正解</span></div><div><b id="ng">0</b><span>ミスあり</span></div><div><b id="rate">0%</b><span>正答率</span></div></div>
       <button class="ghost" id="resetBtn" style="margin-top:10px;width:100%">成績リセット</button>
       <details open><summary>この版で判定していること</summary><div class="small"><p><b>塔担当：</b>先組は1/2/3/8、後組は4/5/6/7。</p><p><b>回答形式：</b>全員が常に役割を持ちます。左塔・上 / 右塔・上 / 左塔・下 / 右塔・下 の塔踏み、左右頭割り、左右扇誘導、ボス左上/右上での誘導などから選びます。</p><p><b>過去/未来の終焉：</b>偶数回後に近い4人へ円範囲。想定する4人は、<b>タゲサ内の左上/右上に入るタンク・近接</b> と、<b>左右の上側で塔を踏む2人</b> です。</p><p><b>消滅の脚：</b>「自分が塔側/塔の逆側へ避ける」ではなく、ボスの向きを塔側/塔の逆側に誘導して、塔側に半面が来ないようにします。</p><p><b>向き誘導：</b>過去の終焉ならボスを塔側へ向ける、未来の終焉ならボスを塔の逆側へ向ける想定です。</p><p><b>同時処理：</b>消滅の脚そのものは奇数回の塔処理と同時ですが、<b>8人でのボス向き誘導はその前、直前の偶数回の最後に行う</b> 想定で出題します。最後だけは <b>A側（北側）に集合してボスをA側（北側）に向けたあと</b>、過去/未来に応じて安全側へ集合します。</p></div></details>
-      <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）式：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）式の組分けルール（H1>H2 / MT>ST / D1>D2 / D3>D4）で先組/後組に分かれます。</p><p><b>ヤーン式・優先順：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。</p><p><b>ヤーン式・南調整：</b>ペアと先組/後組の決め方は①と同じです。初回は左タンヒラ・右DPSを基準にし、2回目以降は直前に同じ塔を踏んだ2人の踏んだ後マーカーを見て、かぶった場合は南側の人が逆塔へ移動して調整します。4回目は必ずTH側・DPS側それぞれでマーカーがかぶるため、H/近接は左塔、T/遠隔は右塔で固定し、各塔で扇が上・円が下になります。3回目後に円なら禁止1/2、扇ならバインド1/2を付与し、8回目はバインド1＝左上、禁止1＝左下、バインド2＝右上、禁止2＝右下で処理します。</p><p><b>ヤーン式①の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
+      <details open><summary>解法の扱い</summary><div class="small"><p><b>KT（りーん）式：</b>ペアは MT-ST / H1-H2 / D1-D2 / D3-D4。初期付与はTH組に頭割り1人、DPS組に頭割り1人。残りはTH組/DPS組ごとに全員が円または扇になります。頭割り2人は先組、残りはKT（りーん）式の組分けルール（H1>H2 / MT>ST / D1>D2 / D3>D4）で先組/後組に分かれます。</p><p><b>ヤーン式・優先順：</b>ペアは MT-H1 / ST-H2 / D1-D3 / D2-D4。頭割りがついた人を含むペアが先組、残りが後組です。3回目後に円なら禁止1/2、扇ならバインド1/2を付与し、8回目はバインド1＝左上、禁止1＝左下、バインド2＝右上、禁止2＝右下で処理します。</p><p><b>ヤーン式・南調整：</b>ペアと先組/後組の決め方は①と同じです。初回は左タンヒラ・右DPSを基準にし、2回目以降は直前に同じ塔を踏んだ2人の踏んだ後マーカーを見て、かぶった場合は南側の人が逆塔へ移動して調整します。4回目は必ずTH側・DPS側それぞれでマーカーがかぶるため、H/近接は左塔、T/遠隔は右塔で固定し、各塔で扇が上・円が下になります。3回目後に円なら禁止1/2、扇ならバインド1/2を付与し、8回目はバインド1＝左上、禁止1＝左下、バインド2＝右上、禁止2＝右下で処理します。</p><p><b>ヤーン式①の優先順位：</b>左右を決めるときは <b>H1 &gt; H2 &gt; MT &gt; ST &gt; D1 &gt; D2 &gt; D3 &gt; D4</b>。高い方が左、低い方が右です。</p><p><b>偶数回塔：</b>扇マーカー持ちは必ず塔の上側、円マーカー持ちは必ず塔の下側。左右は選択中の解法の優先順位で決めます。</p></div></details>
       <details><summary>ギミック共通メモ</summary><div class="small"><p>塔を踏むと、その人の現在の表示パターンの攻撃が発動し、<b>踏んだ4人だけ</b> 次回用の表示に張り替わります。</p><p><b>奇数回</b>に踏んだ4人は、次回用に <b>円2・扇2</b> がランダムで付きます。</p><p><b>偶数回</b>に踏んだ4人は、次回用に <b>頭割り2・円1・扇1</b> がランダムで付きます。</p><p>この版では、そのランダム付与内容も各回の下に表示します。</p><p>偶数塔後は、過去/未来の終焉の円範囲誘導を行い、そのまま次の奇数回に向けたボス向き誘導（消滅の脚用）を先に処理します。</p></div></details>
     </aside>
   </div>
@@ -367,36 +595,37 @@ const ACTIONS=[
 
 const HARD_ACTIONS = {
   // 塔踏み：左塔は奇数回に「左塔・中」も使用
-  tower_left_north:{label:"左塔・上",x:27,y:46.5},
-  tower_left_middle:{label:"左塔・中",x:27,y:64},
-  tower_right_north:{label:"右塔・上",x:73,y:46.5},
-  tower_left_south:{label:"左塔・下",x:27,y:87.5},
-  tower_right_south:{label:"右塔・下",x:73,y:87.5},
+  tower_left_north:{label:"左塔・上",x:23,y:58.5},
+  tower_left_middle:{label:"左塔・中",x:23,y:70.5},
+  tower_right_north:{label:"右塔・上",x:77,y:58.5},
+  tower_left_south:{label:"左塔・下",x:23,y:87.5},
+  tower_right_south:{label:"右塔・下",x:77,y:87.5},
 
-  // 頭割り：塔とボスタゲサの間寄り
-  stack_left:{label:"左頭割り",x:40,y:47.5},
-  stack_right:{label:"右頭割り",x:60,y:47.5},
+  // 頭割り：塔の外で、塔とボスタゲサの間寄り
+  stack_left:{label:"左頭割り",x:38,y:56},
+  stack_right:{label:"右頭割り",x:62,y:56},
 
-  // 扇誘導：左上=左塔左に外接、右上=右塔右に外接、左下=左塔下に外接より少し下
-  fan_left_upper:{label:"左上扇誘導",x:5,y:67},
-  fan_left_lower:{label:"左下扇誘導",x:27,y:97},
-  fan_right_upper:{label:"右上扇誘導",x:95,y:67},
+  // 扇誘導：左右上は塔の真横、左下は少し下
+  fan_left_upper:{label:"左上扇誘導",x:2.5,y:73},
+  fan_left_lower:{label:"左下扇誘導",x:23,y:94},
+  fan_right_upper:{label:"右上扇誘導",x:97.5,y:73},
 
-  // 過去/未来の円範囲誘導：ボスタゲサ上部の内接位置
-  inside_left:{label:"ボス左上",x:36,y:10.5},
-  inside_right:{label:"ボス右上",x:64,y:10.5},
+  // 過去/未来の円範囲誘導：少し左右外・少し下
+  inside_left:{label:"ボス左上",x:37,y:33},
+  inside_right:{label:"ボス右上",x:63,y:33},
 
-  // 消滅の脚誘導：上が塔の逆、下が塔側
-  safe_opposite:{label:"脚：塔の逆へ",x:50,y:25.5},
-  safe_tower:{label:"脚：塔側へ",x:50,y:45},
+  // 消滅の脚誘導：タゲサ中心と上下端の中間
+  safe_tower:{label:"脚：塔側へ",x:50,y:39},
+  safe_opposite:{label:"脚：塔の逆へ",x:50,y:61},
 
   // 最後の処理：A集合後、消滅の脚が来ない側へ集合
-  final_north:{label:"最後：A側（北）で回避",x:50,y:25.5},
-  final_south:{label:"最後：C側（南）で回避",x:50,y:45}
+  gather_north:{label:"A側に集合",x:42,y:22},
+  final_north:{label:"A側で回避",x:58,y:22},
+  final_south:{label:"C側で回避",x:50,y:78}
 };
 const state={
-  method:localStorage.getItem("missingMethod")||"kt",
-  difficulty:localStorage.getItem("missingDifficulty")||"normal",
+  method:localStorage.getItem("missingMethod")||"yaan",
+  difficulty:localStorage.getItem("missingDifficulty")||"practice",
   hardStep:0,
   hardSelected:null,
   hardChecked:false,
@@ -406,6 +635,37 @@ const state={
   problem:null,
   answers:{},
   stats:JSON.parse(localStorage.getItem("missingNormalCombinedStats")||'{"total":0,"ok":0,"ng":0}')
+};
+state.practice={
+  mode:localStorage.getItem("missingPracticeMode")||"continuous",
+  running:false,
+  paused:false,
+  phaseIndex:0,
+  phaseStartedAt:0,
+  countdownStartedAt:0,
+  phaseMode:"idle",
+  selected:null,
+  checked:false,
+  lastResult:null,
+  resultUntil:0,
+  showAllUntil:0,
+  logs:[],
+  history:[],
+  historyIndex:-1,
+  pausedAt:0,
+  raf:0,
+  answerUntil:0,
+  answerExpected:null,
+  answerGot:null,
+  finalGatherSelected:null,
+  finalAvoidSelected:null,
+  finalGatherResolved:false,
+  answerStep:null,
+  summaryVisible:false,
+  summaryUntil:0,
+  pendingAdvanceAt:0,
+  nextPhaseStartAt:0,
+  fixedTower:false
 };
 
 function pairsFor(method){
@@ -469,22 +729,48 @@ function halfSideLabel(e){return e==="past"?"塔の逆側":"塔側";} // 半面�
 function sideLabel(s){return s==="tower"?"塔側":s==="opposite"?"塔の逆側":s;}
 function finalGatherKey(e){return e==="future"?"south":"north";}
 function finalGatherLabel(k){return k==="south"?"C側（南側）":"A側（北側）";}
-function markChip(role,markKey,focusRoles=[]){
+function markChip(role,markKey,focusRoles=[], specialKey=""){
   const mark=MARKS[markKey];
   const method=state.problem?.method;
   const cls=[
     "markChip",
+    method==="kt" && focusRoles.includes(role) && role===state.role ? "ktPairSelf" : "",
+    method==="kt" && focusRoles.includes(role) && role!==state.role ? "ktPairPartner" : "",
     method==="yaan" && focusRoles.includes(role) && role===state.role ? "yaanPairSelf" : "",
     method==="yaan" && focusRoles.includes(role) && role!==state.role ? "yaanPairPartner" : "",
     method==="yaan_south" && focusRoles.includes(role) && role===state.role ? "sameTowerSelf" : "",
     method==="yaan_south" && focusRoles.includes(role) && role!==state.role ? "sameTowerPartner" : ""
   ].filter(Boolean).join(" ");
-  return `<span class="${cls}"><span class="r">${role}</span><span class="mark ${mark.cls}" style="min-width:auto;padding:2px 8px;font-size:11px">${mark.label}</span></span>`;
+  const specialHtml = specialKey ? `<span class="specialMark ${specialMarkClass(specialKey)}" style="margin-left:6px;">${specialMarkLabel(specialKey)}</span>` : "";
+  return `<span class="${cls}"><span class="r">${role}</span><span class="mark ${mark.cls}" style="min-width:auto;padding:2px 8px;font-size:11px">${mark.label}</span>${specialHtml}</span>`;
 }
-function marksSummary(map, roles, focusRoles=[]){return roles.map(r=>markChip(r,map[r],focusRoles)).join("");}
+function marksSummary(map, roles, focusRoles=[], round=null, forceSpecial=false){
+  const showSpecial = forceSpecial || ((state.problem?.method==="yaan" || state.problem?.method==="yaan_south") && round!==null && round>=4);
+  const specialMap = showSpecial ? (state.problem?.yaanSouthEightMarkers || {}) : {};
+  return roles.map(r=>markChip(r,map[r],focusRoles,specialMap[r]||"")).join("");
+}
 function eightMarkerSummary(roles){
   const m=state.problem?.yaanSouthEightMarkers || {};
   return roles.filter(r=>m[r]).map(r=>`<span class="markChip"><span class="r">${r}</span><span class="specialMark ${specialMarkClass(m[r])}">${specialMarkLabel(m[r])}</span></span>`).join("");
+}
+function ktGroupPartner(role){
+  if(state.problem?.method!=="kt") return null;
+  const group = state.problem.firstRoles?.includes(role)
+    ? state.problem.firstRoles
+    : state.problem.secondRoles?.includes(role)
+      ? state.problem.secondRoles
+      : [];
+  if(!group.length) return null;
+  if(isTank(role)) return group.find(isHealer) || null;
+  if(isHealer(role)) return group.find(isTank) || null;
+  if(isMelee(role)) return group.find(isRanged) || null;
+  if(isRanged(role)) return group.find(isMelee) || null;
+  return null;
+}
+function ktFocusRoles(){
+  if(state.problem?.method!=="kt") return [];
+  const partner=ktGroupPartner(state.role);
+  return partner ? [state.role, partner] : [state.role];
 }
 function sameTowerFocusRolesForSouth(round){
   if(state.problem?.method!=="yaan_south") return [];
@@ -503,6 +789,7 @@ function pairFocusRolesForYaan(round){
   return partner ? [state.role, partner] : [state.role];
 }
 function markFocusRoles(round){
+  if(state.problem?.method==="kt") return ktFocusRoles();
   if(state.problem?.method==="yaan_south") return sameTowerFocusRolesForSouth(round);
   if(state.problem?.method==="yaan") return pairFocusRolesForYaan(round);
   return [];
@@ -566,7 +853,7 @@ function newProblem(){
   const groups=determineGroups(method, marks);
   const endTypes={2:Math.random()<.5?"past":"future",4:Math.random()<.5?"past":"future",6:Math.random()<.5?"past":"future",8:Math.random()<.5?"past":"future"};
   const sim=simulateRoundMarks(marks, groups.firstRoles, groups.secondRoles);
-  const yaanSouthEightMarkers = method==="yaan_south" ? assignYaanSouthEightMarkers(sim.nextAssignments[3] || {}) : {};
+  const yaanSouthEightMarkers = (method==="yaan" || method==="yaan_south") ? assignYaanSouthEightMarkers(sim.nextAssignments[3] || {}) : {};
   state.problem={method, marks, endTypes, firstRoles:groups.firstRoles, secondRoles:groups.secondRoles, roundMarks:sim.roundMarks, nextAssignments:sim.nextAssignments, yaanSouthEightMarkers};
   state.answers={};
   state.hardStep=0;
@@ -574,6 +861,7 @@ function newProblem(){
   state.hardChecked=false;
   state.hardHistory=[];
   state.hardShowAllPositions=false;
+  if(state.practice) resetPracticeRun(false);
   renderAll();
   setResult("初期マークを見て、1〜8回の行動を通しで選んでね。","");
 }
@@ -644,6 +932,13 @@ function expectedActionYaan(role, round){
   const marks=state.problem.roundMarks[round];
   const active=activeRolesForRound(round);
   if(active.includes(role)){
+    if(round===8){
+      const eightMark=state.problem.yaanSouthEightMarkers?.[role];
+      if(eightMark==="bind1") return "tower_left_north";
+      if(eightMark==="stop1") return "tower_left_south";
+      if(eightMark==="bind2") return "tower_right_north";
+      if(eightMark==="stop2") return "tower_right_south";
+    }
     if(round%2===1){
       if(marks[role]==="fan") return "tower_left_south";
       if(marks[role]==="circle") return "tower_right_south";
@@ -746,12 +1041,12 @@ function expectedActionYaanSouth(role, round){
 function expectedAction(role, round){
   if(state.problem.method==="kt") return expectedActionKT(role, round);
   if(state.problem.method==="yaan") return expectedActionYaan(role, round);
-  if(state.problem.method==="yaan_south") return expectedActionYaanSouth(role, round);
+  if((state.problem.method==="yaan" || state.problem.method==="yaan_south")) return expectedActionYaanSouth(role, round);
   return expectedActionKT(role, round);
 }
 function expectedActionForMode(role, round){
   const base = expectedAction(role, round);
-  if(state.difficulty !== "hard") return base;
+  if(state.difficulty !== "hard" && state.difficulty !== "practice") return base;
   if(base === "tower_left_north") return round % 2 === 1 ? "tower_left_middle" : "tower_left_north";
   if(base === "fan_left") return round % 2 === 1 ? "fan_left_lower" : "fan_left_upper";
   if(base === "fan_right") return "fan_right_upper";
@@ -825,13 +1120,13 @@ function hardMarkChangeHTML(step){
     <div class="marksBox">
       <div class="marksTitle">${round===7||round===8?"この回に塔を踏む4人の現在マーク":"この回に塔を踏む4人のマーク変化"}</div>
       <div class="small" style="margin-top:8px;">踏む前のマーク</div>
-      <div class="markList">${marksSummary(currentMarks, ordered, markFocusRoles(round))}${marksLegendHTML(round)}</div>
-      ${state.problem.method==="yaan_south" && round===8 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（左1／右2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(ordered)}</div>` : ""}
+      <div class="markList">${marksSummary(currentMarks, ordered, markFocusRoles(round), round)}${marksLegendHTML(round)}</div>
+      ${(state.problem.method==="yaan" || state.problem.method==="yaan_south") && round===8 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（左1／右2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(ordered)}</div>` : ""}
       ${round===7||round===8
         ? `<div class="markArrow">この組はこの回が4回目の塔踏みなので、次回用マーク変化はありません。</div>`
         : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div>
-           <div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, ordered, markFocusRoles(round))}</div>
-           ${state.problem.method==="yaan_south" && round===3 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（円＝禁止1/2、扇＝バインド1/2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(ordered)}</div>` : ""}
+           <div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, ordered, markFocusRoles(round), round+1, round===3)}</div>
+           ${(state.problem.method==="yaan" || state.problem.method==="yaan_south") && round===3 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（円＝禁止1/2、扇＝バインド1/2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(ordered)}</div>` : ""}
            <div class="markArrow">${round%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
     </div>`;
 }
@@ -841,18 +1136,19 @@ window.setAnswer=setAnswer;
 function getAnswer(k){return state.answers[k];}
 
 function renderControls(){
+  document.body.classList.toggle("practiceModeActive", state.difficulty==="practice");
   document.querySelectorAll(".methodBtn").forEach(b=>b.classList.toggle("active",b.dataset.method===state.method));
   document.querySelectorAll(".difficultyBtn").forEach(b=>b.classList.toggle("active",b.dataset.difficulty===state.difficulty));
   const box=document.getElementById("roleBtns"); box.innerHTML="";
   ROLES.forEach(r=>{const b=document.createElement("button"); b.textContent=r; b.className=r===state.role?"active":""; b.onclick=()=>{state.role=r; localStorage.setItem("missingRole",r); renderAll();}; box.appendChild(b);});
   const mini=document.getElementById("timelineMini");
-  if(mini) mini.classList.toggle("hidden", state.difficulty==="hard");
+  if(mini) mini.classList.toggle("hidden", state.difficulty==="hard" || state.difficulty==="practice");
   const resetTop=document.getElementById("resetHardTopBtn");
   if(resetTop) resetTop.classList.toggle("hidden", state.difficulty!=="hard");
   const newHardBottom=document.getElementById("newHardBottomBtn");
   if(newHardBottom) newHardBottom.classList.toggle("hidden", state.difficulty!=="hard");
   const checkTop=document.getElementById("checkBtn");
-  if(checkTop) checkTop.classList.toggle("hidden", state.difficulty==="hard");
+  if(checkTop) checkTop.classList.toggle("hidden", state.difficulty==="hard" || state.difficulty==="practice");
 }
 function renderPlayers(){
   const box=document.getElementById("players"), p=state.problem, partner=partnerOf(state.role,p.method), first=new Set(p.firstRoles);
@@ -863,7 +1159,7 @@ function renderPlayers(){
     const metaParts=[];
     if(role===state.role) metaParts.push("あなた");
     if(role===partner) metaParts.push("相方");
-    if(state.difficulty!=="hard") metaParts.push(first.has(role)?"先組 1238":"後組 4567");
+    if(state.difficulty==="normal") metaParts.push(first.has(role)?"先組 1238":"後組 4567");
     div.innerHTML=`<div class="role">${role}</div><span class="mark ${mark.cls}">${mark.label}</span><div class="meta">${metaParts.join(" / ")}</div>`;
     box.appendChild(div);
   });
@@ -874,7 +1170,7 @@ function renderStats(){
   document.getElementById("ng").textContent=state.stats.ng;
   document.getElementById("rate").textContent=state.stats.total?Math.round(state.stats.ok/state.stats.total*100)+"%":"0%";
 }
-function renderAll(){renderControls(); renderPlayers(); renderTimeline(); renderHardPanel(); renderStats();}
+function renderAll(){renderControls(); renderPlayers(); renderTimeline(); renderHardPanel(); renderPracticePanel(); renderStats();}
 
 function towerActionButtons(selected, round){
   return ["tower_left_north","tower_right_north","tower_left_south","tower_right_south","stack_left","stack_right","fan_left","fan_right","inside_left","inside_right"].map(k=>actionButton(k,selected,round)).join("");
@@ -889,7 +1185,7 @@ function phaseHintForRole(round, role){
 
 function renderTimeline(){
   const box=document.getElementById("timeline");
-  if(state.difficulty === "hard"){ box.classList.add("hidden"); box.innerHTML=""; return; }
+  if(state.difficulty === "hard" || state.difficulty === "practice"){ box.classList.add("hidden"); box.innerHTML=""; return; }
   box.classList.remove("hidden");
   box.innerHTML="";
   for(let i=1;i<=8;i++){
@@ -899,11 +1195,11 @@ function renderTimeline(){
     <div class="marksBox">
       <div class="marksTitle">${i===7||i===8?"この回に塔を踏む4人の現在マーク":"この回に塔を踏む4人のマーク変化"}</div>
       <div class="small" style="margin-top:8px;">踏む前のマーク</div>
-      <div class="markList">${marksSummary(currentMarks, orderRolesForDisplay(towerRoles), markFocusRoles(i))}${marksLegendHTML(i)}</div>
-      ${state.problem.method==="yaan_south" && i===8 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（左1／右2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(orderRolesForDisplay(towerRoles))}</div>` : ""}
+      <div class="markList">${marksSummary(currentMarks, orderRolesForDisplay(towerRoles), markFocusRoles(i), i)}${marksLegendHTML(i)}</div>
+      ${(state.problem.method==="yaan" || state.problem.method==="yaan_south") && i===8 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（左1／右2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(orderRolesForDisplay(towerRoles))}</div>` : ""}
       ${i===7||i===8
         ? `<div class="markArrow">この組はこの回が4回目の塔踏みなので、4スタック消化後の次回用マーク変化はありません。</div>`
-        : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div><div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, orderRolesForDisplay(towerRoles), markFocusRoles(i))}</div>${state.problem.method==="yaan_south" && i===3 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（円＝禁止1/2、扇＝バインド1/2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(orderRolesForDisplay(towerRoles))}</div>` : ""}<div class="markArrow">${i%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
+        : `<div class="small" style="margin-top:8px;">踏んだ後のマーク（次回用）</div><div class="markList" style="margin-top:8px;">${marksSummary(nextMarks, orderRolesForDisplay(towerRoles), markFocusRoles(i), i+1, i===3)}</div>${(state.problem.method==="yaan" || state.problem.method==="yaan_south") && i===3 ? `<div class="small" style="margin-top:8px;">8回目用マーカー（円＝禁止1/2、扇＝バインド1/2）</div><div class="markList" style="margin-top:8px;">${eightMarkerSummary(orderRolesForDisplay(towerRoles))}</div>` : ""}<div class="markArrow">${i%2===1?"奇数回なので、踏んだ4人には <b>円2・扇2</b> がランダムで付き直る":"偶数回なので、踏んだ4人には <b>頭割り2・円1・扇1</b> がランダムで付き直る"}</div>`}
     </div>
     <div class="actionSectionTitle">この回の主行動を選ぶ</div>
     <div class="actionGrid">${towerActionButtons(getAnswer(`action${i}`),i)}</div>`;
@@ -1002,7 +1298,7 @@ function renderHardPanel(){
     <div class="hardStage">
       <div class="hardHeader">
         <div class="hardTitle">${hardTitle(step)}</div>
-        <div class="hardProgress">${progress}</div>
+        <div class="hardHeaderRight"><button class="slideNavBtn" onclick="jumpHardStep(-1)" ${state.hardStep>0?"":"disabled"}>＜</button><button class="slideNavBtn" onclick="jumpHardStep(1)" ${state.hardStep<steps.length-1?"":"disabled"}>＞</button><div class="hardProgress">${progress}</div></div>
       </div>
       ${hardCastHTML(step)}
       <div class="hardMini">${stepHelp}</div>
@@ -1071,6 +1367,14 @@ function prevHardStep(){
   setResult("1つ前の処理に戻りました。","");
 }
 window.prevHardStep=prevHardStep;
+function jumpHardStep(delta){
+  const steps=hardSteps();
+  state.hardStep=Math.max(0, Math.min(steps.length-1, state.hardStep + delta));
+  state.hardShowAllPositions=false;
+  loadHardStepState();
+  renderHardPanel();
+}
+window.jumpHardStep=jumpHardStep;
 function resetHardRun(){
   state.hardStep=0;
   state.hardSelected=null;
@@ -1081,6 +1385,609 @@ function resetHardRun(){
   setResult("ハード通しを最初からやり直します。","");
 }
 window.resetHardRun=resetHardRun;
+
+
+/* ===== 実践モード ===== */
+function cloneProblem(p){return JSON.parse(JSON.stringify(p));}
+function practicePhases(){
+  return [
+    {type:"tower", round:1, duration:9500},
+    {type:"tower", round:2, duration:9500},
+    {type:"safe", round:3, after:2, duration:4500},
+    {type:"tower", round:3, duration:5000},
+    {type:"tower", round:4, duration:9500},
+    {type:"safe", round:5, after:4, duration:4500},
+    {type:"tower", round:5, duration:5000},
+    {type:"tower", round:6, duration:9500},
+    {type:"safe", round:7, after:6, duration:4500},
+    {type:"tower", round:7, duration:5000},
+    {type:"tower", round:8, duration:9500},
+    {type:"safe", round:"final", after:8, duration:9500}
+  ];
+}
+function practicePhaseTitle(step){
+  if(!step) return "";
+  if(step.type==="tower") return `${step.round}回目塔`;
+  if(step.after===8) return "最後の回避";
+  return `${step.after}回目後：消滅の脚`;
+}
+function practiceFinalStage(step, now=performance.now()){
+  if(!step || step.type!=="safe" || step.after!==8) return "normal";
+  const pr=state.practice;
+  if(pr.phaseMode!=="phase") return "gather";
+  return (now-pr.phaseStartedAt)<4500 ? "gather" : "avoid";
+}
+function practiceExpected(step, now=performance.now()){
+  if(step.type==="tower") return expectedActionForMode(state.role, step.round);
+  if(step.after===8){
+    return practiceFinalStage(step, now)==="gather"
+      ? "gather_north"
+      : (finalGatherKey(state.problem.endTypes[8]) === "north" ? "final_north" : "final_south");
+  }
+  return hardExpected(step);
+}
+function practiceOptions(step){
+  if(!step) return [];
+  if(step.type==="safe" && step.after===8) return ["gather_north","final_north","final_south"];
+  return ["tower_left_north","tower_left_middle","tower_right_north","tower_left_south","tower_right_south",
+          "stack_left","stack_right","fan_left_upper","fan_right_upper","fan_left_lower","inside_left","inside_right",
+          "safe_tower","safe_opposite"];
+}
+function rotatePoint(p, quarter){
+  let x=p.x, y=p.y;
+  for(let i=0;i<quarter;i++){
+    const dx=x-50, dy=y-50;
+    x=50-dy; y=50+dx;
+  }
+  return {x,y};
+}
+function practiceDisplayRound(step){
+  if(!step) return null;
+  if(step.type==="tower") return step.round;
+  if(step.after===8) return null;
+  return step.round;
+}
+function practiceRotationForStep(step){
+  if(state.practice?.fixedTower) return 0;
+  const r=practiceDisplayRound(step);
+  if(!r || r==="final") return 0;
+  return (r-1)%4;
+}
+function practicePointForKey(key, step){
+  if(key==="gather_north") return {x:50,y:22};
+  if(key==="final_north") return {x:50,y:39};
+  if(key==="final_south") return {x:50,y:61};
+  if(key==="safe_tower" || key==="safe_opposite"){
+    const towers=practiceTowerCenters(step);
+    if(towers.length===2){
+      const center={x:(towers[0].x+towers[1].x)/2,y:(towers[0].y+towers[1].y)/2};
+      const towerPt={x:50 + (center.x-50)*0.5, y:50 + (center.y-50)*0.5};
+      const oppositePt={x:50 - (center.x-50)*0.5, y:50 - (center.y-50)*0.5};
+      return key==="safe_tower" ? towerPt : oppositePt;
+    }
+  }
+  const q=practiceRotationForStep(step);
+  const base=HARD_ACTIONS[key] || {x:50,y:50};
+  return rotatePoint({x:base.x,y:base.y}, q);
+}
+function practiceTowerCenters(step){
+  if(!step || step.after===8 || step.round==="final") return [];
+  const q=practiceRotationForStep(step);
+  return [{x:23,y:73},{x:77,y:73}].map(p=>rotatePoint(p,q));
+}
+function resetPracticeRun(render=true){
+  if(!state.practice) return;
+  stopPracticeTimer();
+  Object.assign(state.practice,{
+    running:false, paused:false, phaseIndex:0, phaseStartedAt:0, countdownStartedAt:0,
+    phaseMode:"idle", selected:null, checked:false, lastResult:null, resultUntil:0,
+    showAllUntil:0, logs:[], pausedAt:0,
+    answerUntil:0, answerExpected:null, answerGot:null, answerStep:null,
+    pendingAdvanceAt:0, nextPhaseStartAt:0,
+    finalGatherSelected:null, finalAvoidSelected:null, finalGatherResolved:false,
+    summaryVisible:false, summaryUntil:0
+  });
+  if(render) renderPracticePanel();
+}
+function stopPracticeTimer(){
+  if(state.practice?.raf){cancelAnimationFrame(state.practice.raf); state.practice.raf=0;}
+  if(state.practice){state.practice.running=false; state.practice.paused=false;}
+}
+function ensurePracticeHistory(){
+  const pr=state.practice;
+  if(!pr.history.length && state.problem){
+    pr.history=[cloneProblem(state.problem)];
+    pr.historyIndex=0;
+  }
+}
+function practiceStart(){
+  ensurePracticeHistory();
+  const pr=state.practice;
+  if(pr.running && !pr.paused) return;
+  if(pr.phaseIndex>=practicePhases().length) resetPracticeRun(false);
+  pr.running=true; pr.paused=false; pr.selected=null; pr.checked=false; pr.lastResult=null;
+  pr.pendingAdvanceAt=0;
+  pr.summaryVisible=false; pr.summaryUntil=0;
+  pr.phaseMode="countdown";
+  pr.countdownStartedAt=performance.now();
+  pr.showAllUntil=performance.now()+5000;
+  practiceTick();
+}
+function practicePause(){
+  const pr=state.practice;
+  if(!pr.running) return;
+  pr.paused=!pr.paused;
+  const now=performance.now();
+  if(pr.paused){pr.pausedAt=now;}
+  else{
+    if(pr.phaseMode==="phase") pr.phaseStartedAt += now-pr.pausedAt;
+    if(pr.phaseMode==="countdown") pr.countdownStartedAt += now-pr.pausedAt;
+    if(pr.showAllUntil) pr.showAllUntil += now-pr.pausedAt;
+    if(pr.resultUntil) pr.resultUntil += now-pr.pausedAt;
+    if(pr.answerUntil) pr.answerUntil += now-pr.pausedAt;
+    if(pr.pendingAdvanceAt) pr.pendingAdvanceAt += now-pr.pausedAt;
+    if(pr.nextPhaseStartAt) pr.nextPhaseStartAt += now-pr.pausedAt;
+    if(pr.summaryUntil) pr.summaryUntil += now-pr.pausedAt;
+    pr.pausedAt=0; practiceTick();
+  }
+  renderPracticePanel();
+}
+function practiceNextProblem(){
+  const pr=state.practice;
+  stopPracticeTimer();
+  newProblem();
+  pr.history=pr.history.slice(0, pr.historyIndex+1);
+  pr.history.push(cloneProblem(state.problem));
+  pr.historyIndex=pr.history.length-1;
+  resetPracticeRun(false);
+  renderAll();
+}
+function practiceRetry(){resetPracticeRun(true);}
+function practicePrevProblem(){
+  const pr=state.practice; ensurePracticeHistory();
+  if(pr.historyIndex<=0) return;
+  stopPracticeTimer();
+  pr.historyIndex--;
+  state.problem=cloneProblem(pr.history[pr.historyIndex]);
+  resetPracticeRun(false);
+  renderAll();
+}
+function practiceSetMode(mode){
+  state.practice.mode=mode;
+  localStorage.setItem("missingPracticeMode", mode);
+  renderPracticePanel();
+}
+function practiceSetFixedTower(checked){
+  state.practice.fixedTower=!!checked;
+  renderPracticePanel();
+}
+function choosePractice(key){
+  const pr=state.practice;
+  const step=practicePhases()[pr.phaseIndex];
+  if(step?.type==="safe" && step.after===8){
+    const stage=practiceFinalStage(step);
+    if(stage==="gather") pr.finalGatherSelected=key;
+    else pr.finalAvoidSelected=key;
+  }else{
+    pr.selected=key;
+  }
+  pr.checked=false;
+  renderPracticePanel();
+}
+window.choosePractice=choosePractice;
+function practiceAdvancePhase(now=performance.now()){
+  const pr=state.practice;
+  pr.phaseIndex++;
+  if(pr.phaseIndex>=practicePhases().length){
+    pr.phaseMode="summary";
+    pr.summaryVisible=true;
+    if(pr.mode==="continuous"){
+      pr.running=true;
+      pr.summaryUntil=now+3000;
+    }else{
+      pr.running=false;
+      pr.summaryUntil=0;
+    }
+    renderPracticePanel();
+    return;
+  }
+  pr.phaseMode="phase";
+  pr.phaseStartedAt=now;
+  pr.pendingAdvanceAt=0;
+  pr.nextPhaseStartAt=0;
+  pr.selected=null;
+  pr.finalGatherSelected=null;
+  pr.finalAvoidSelected=null;
+  pr.finalGatherResolved=false;
+  pr.showAllUntil=Math.max(pr.showAllUntil, now+5000);
+}
+function practiceTick(){
+  const pr=state.practice;
+  if(!pr.running || pr.paused || state.difficulty!=="practice") return;
+  const now=performance.now();
+  if(pr.phaseMode==="countdown"){
+    if(now-pr.countdownStartedAt>=3000){
+      pr.phaseMode="phase";
+      pr.phaseStartedAt=now;
+      pr.selected=null;
+      pr.finalGatherSelected=null;
+      pr.finalAvoidSelected=null;
+      pr.finalGatherResolved=false;
+      pr.showAllUntil=now+5000;
+    }
+  }else if(pr.phaseMode==="phase"){
+    const step=practicePhases()[pr.phaseIndex];
+    if(pr.pendingAdvanceAt){
+      if(now>=pr.pendingAdvanceAt) practiceAdvancePhase(pr.nextPhaseStartAt || pr.pendingAdvanceAt);
+    }else if(step?.type==="safe" && step.after===8){
+      const elapsed=now-pr.phaseStartedAt;
+      if(!pr.finalGatherResolved && elapsed>=4500){
+        practiceResolvePhaseResult({title:"最後の消滅の脚：A側に集合", expected:"gather_north", got:pr.finalGatherSelected, now});
+        pr.finalGatherResolved=true;
+      }
+      if(step && elapsed>=step.duration) practiceFinishPhase(now);
+    }else if(step && now-pr.phaseStartedAt>=step.duration){
+      practiceFinishPhase(now);
+    }
+  }else if(pr.phaseMode==="summary"){
+    if(pr.mode==="continuous" && pr.summaryUntil && now>=pr.summaryUntil){
+      practiceNextProblem();
+      practiceStart();
+      return;
+    }
+  }
+  renderPracticePanel();
+  pr.raf=requestAnimationFrame(practiceTick);
+}
+function practiceResolvePhaseResult({title, expected, got, now=performance.now()}){
+  const pr=state.practice;
+  const ok=got===expected;
+  pr.lastResult=ok?"正解":"不正解";
+  pr.answerUntil=now+1000;
+  pr.resultUntil=pr.answerUntil;
+  pr.answerExpected=expected;
+  pr.answerGot=got||null;
+  const cur=practicePhases()[pr.phaseIndex];
+  pr.answerStep=cur ? {...cur} : null;
+  pr.logs.push({title, ok, got:got?hardPointLabel(got):"未選択", expected:hardPointLabel(expected)});
+}
+function practiceFinishPhase(now=performance.now()){
+  const pr=state.practice;
+  const phases=practicePhases();
+  const step=phases[pr.phaseIndex];
+  if(!step) return;
+  const expected=practiceExpected(step, now);
+  const got=(step.type==="safe" && step.after===8) ? pr.finalAvoidSelected : pr.selected;
+  practiceResolvePhaseResult({title:practicePhaseTitle(step), expected, got, now});
+
+  // 回答表示の1秒中も、次フェーズのバーを止めずに進める。
+  // ただし最終フェーズだけは次フェーズがないので、1秒後に結果ログへ移る。
+  if(pr.phaseIndex < phases.length - 1){
+    practiceAdvancePhase(now);
+  }else{
+    pr.nextPhaseStartAt=now;
+    pr.pendingAdvanceAt=now+1000;
+  }
+}
+function practiceProgress(step){
+  const pr=state.practice;
+  if(!step || pr.phaseMode!=="phase") return 0;
+  const elapsed=Math.max(0, performance.now()-pr.phaseStartedAt);
+  return Math.max(0, Math.min(1, 1-elapsed/step.duration));
+}
+function practiceTowerBarPercent(step){
+  if(!step) return 0;
+  const SAFE_MS=4500, ODD_TOWER_MS=5000, TOTAL_MS=9500;
+  if(step.type==="safe"){
+    const progress=practiceProgress(step);
+    if(step.after===8) return progress * 100;
+    return ((ODD_TOWER_MS + SAFE_MS*progress) / TOTAL_MS) * 100;
+  }
+  const progress=practiceProgress(step);
+  if(step.type==="tower" && [3,5,7].includes(step.round)) return (ODD_TOWER_MS / TOTAL_MS) * progress * 100;
+  if(step.type==="tower") return progress*100;
+  return 0;
+}
+function practiceSafeBarPercent(step){
+  if(!step || step.type!=="safe") return 0;
+  const elapsed=Math.max(0, performance.now()-state.practice.phaseStartedAt);
+  if(elapsed>=4500) return 0;
+  return Math.max(0, (1-elapsed/4500))*100;
+}
+function practiceMarkSymbolForRole(role, step){
+  return "";
+}
+function practiceRoleLineHTML(role, step){
+  return `<span class="practiceRoleLine"><span>${role}</span></span>`;
+}
+function practiceShowAll(step){
+  const pr=state.practice;
+  const now=performance.now();
+  return !!step && (pr.phaseMode==="countdown" || now < pr.showAllUntil);
+}
+function practiceAllPositionRoles(step, expectedKey=null){
+  const result={};
+  if(!step) return result;
+
+  // 最後のA集合 / A・C回避は全員集合なので従来どおり「全員」を表示
+  if(step.type==="safe" && step.after===8){
+    const key = expectedKey || practiceExpected(step);
+    result[key]=["全員"];
+    return result;
+  }
+
+  // 消滅の脚は塔担当4人の位置ではなく、回答そのもの（塔側 / 塔の逆）を表示する
+  if(step.type==="safe"){
+    const key = expectedKey || practiceExpected(step);
+    result[key]=[];
+    return result;
+  }
+
+  if(step.type==="tower"){
+    const active=activeRolesForRound(step.round);
+    const roles=active.includes(state.role) ? active : [state.role];
+
+    roles.forEach(role=>{
+      const key=expectedActionForMode(role, step.round);
+      if(!result[key]) result[key]=[];
+      result[key].push(role);
+    });
+    return result;
+  }
+
+  return result;
+}
+function practiceJumpSlide(delta){
+  const pr=state.practice, phases=practicePhases();
+  if(pr.running){
+    pr.running=false;
+    pr.paused=false;
+    cancelAnimationFrame(pr.raf);
+  }
+  pr.phaseMode="idle";
+  pr.summaryVisible=false;
+  pr.summaryUntil=0;
+  pr.phaseIndex=Math.max(0, Math.min(phases.length-1, pr.phaseIndex + delta));
+  pr.selected=null;
+  pr.answerUntil=0;
+  pr.answerStep=null;
+  pr.resultUntil=0;
+  pr.finalGatherSelected=null;
+  pr.finalAvoidSelected=null;
+  pr.finalGatherResolved=false;
+  renderPracticePanel();
+}
+function practiceFocusRolesForMethod(round){
+  const method=state.problem?.method;
+  const active=activeRolesForRound(round);
+  if(!active.includes(state.role)) return [];
+  if(method==="kt"){
+    const partner=ktGroupPartner(state.role);
+    return partner ? [state.role, partner] : [state.role];
+  }
+  if(method==="yaan"){
+    const partner=partnerOf(state.role, method);
+    return partner ? [state.role, partner] : [state.role];
+  }
+  if(method==="yaan_south"){
+    return sameTowerFocusRolesForSouth(round);
+  }
+  return [state.role];
+}
+function practiceFocusPartnerRolesForStep(step){
+  if(!step || step.type!=="tower") return [];
+  return practiceFocusRolesForMethod(step.round).filter(role=>role && role!==state.role);
+}
+function practiceHighlightKindForRoles(roles, step){
+  if(!roles || !roles.length) return "";
+  if(roles.includes("全員") || roles.includes(state.role)) return "self";
+  const partners=practiceFocusPartnerRolesForStep(step);
+  return roles.some(role=>partners.includes(role)) ? "partner" : "";
+}
+function practiceCarryAnswerOverlayHTML(step, now=performance.now()){
+  const pr=state.practice;
+  if(!step || pr.answerUntil<=0 || now >= pr.showAllUntil) return "";
+  const prev=pr.answerStep;
+  if(!prev || prev.type!=="tower") return "";
+  const active=activeRolesForRound(prev.round);
+  if(!active.includes(state.role)) return "";
+  const focusRoles=practiceFocusRolesForMethod(prev.round).filter(Boolean);
+  if(!focusRoles.length) return "";
+  if(focusRoles.includes("全員")) return "";
+  const currentRound=practiceMarksDisplayRound(step);
+  const nextMarks=currentRound ? state.problem.roundMarks[currentRound] : null;
+  if(!nextMarks) return "";
+  const method=state.problem.method;
+  const showSpecial=(method==="yaan" || method==="yaan_south") && currentRound>=4;
+  const specialMap=showSpecial ? (state.problem.yaanSouthEightMarkers || {}) : {};
+  const grouped={};
+  focusRoles.forEach(role=>{
+    const key=expectedActionForMode(role, prev.round);
+    if(!grouped[key]) grouped[key]=[];
+    grouped[key].push(role);
+  });
+  return Object.entries(grouped).map(([key, roles])=>{
+    const p=practicePointForKey(key, prev);
+    const carryMarks=`<div class="practiceCarryMarks">${roles.map(role=>{
+      const mark=MARKS[nextMarks[role]];
+      if(!mark) return "";
+      const special=specialMap[role] ? `<span class="specialMark ${specialMarkClass(specialMap[role])}">${specialMarkLabel(specialMap[role])}</span>` : "";
+      return `<span class="mark ${mark.cls}" style="min-width:auto;padding:2px 8px;font-size:11px">${role} ${mark.label}</span>${special}`;
+    }).join("")}</div>`;
+    const highlight=practiceHighlightKindForRoles(roles, prev);
+    const cls=["practicePos","carryOverlay", highlight==="self"?"carrySelf":"", highlight==="partner"?"carryPartner":""].filter(Boolean).join(" ");
+    return `<div class="${cls}" style="left:${p.x}%;top:${p.y}%">${carryMarks}<span class="practiceRoleLabel">${roleLabelHTML(roles)}</span></div>`;
+  }).join("");
+}
+function practiceMarkerHTML(step){
+  return "";
+}
+function practiceMarksDisplayRound(step){
+  if(!step) return null;
+  if(step.type==="tower") return step.round;
+  if(step.after===8) return null;
+  return step.round;
+}
+function practiceMarksOverlayHTML(step){
+  if(!practiceShowAll(step)) return "";
+  const round=practiceMarksDisplayRound(step);
+  if(!round) return "";
+  const current=state.problem.roundMarks[round];
+  if(!current) return "";
+  const ordered=["MT","H1","D1","D3","ST","H2","D2","D4"];
+  const method=state.problem.method;
+  const showSpecial=(method==="yaan" || method==="yaan_south") && round>=4;
+  const specialMap=showSpecial ? (state.problem.yaanSouthEightMarkers || {}) : {};
+  const southRoles=method==="yaan_south" ? sameTowerFocusRolesForSouth(round) : [];
+  const pairPartner=method==="kt" ? ktGroupPartner(state.role) : (method==="yaan" ? partnerOf(state.role, method) : null);
+  const chips=ordered.map(role=>{
+    let extra="";
+    if(method==="kt"){
+      if(role===state.role) extra=" ktPairSelf";
+      else if(role===pairPartner) extra=" ktPairPartner";
+    }else if(method==="yaan_south"){
+      if(role===state.role) extra=" practiceFocusSelfDash";
+      else if(southRoles.includes(role)) extra=" practiceFocusPartnerDash";
+    }else if(role===state.role){
+      extra=" practiceFocusSelf";
+    }else if(role===pairPartner){
+      extra=" practiceFocusPartner";
+    }
+    return markChip(role,current[role],[],specialMap[role]||"").replace('class="markChip', `class="markChip${extra}`);
+  }).join("");
+  return `<div class="practiceMarksOverlay"><div class="practiceMarksTitle">踏む前のマーク</div><div class="practiceMarksGrid">${chips}</div></div>`;
+}
+function practiceAnswerOverlayHTML(now=performance.now()){
+  const pr=state.practice;
+  if(!(pr.answerStep && now < (pr.answerUntil||0))) return "";
+  const step=pr.answerStep;
+  const expected=pr.answerExpected;
+  const got=pr.answerGot;
+  const rolesMap=practiceAllPositionRoles(step, expected);
+  let renderKeys=[];
+  if(step.type==="safe" && step.after!==8){
+    renderKeys=[expected];
+  }else{
+    const keys=Object.keys(rolesMap);
+    renderKeys=[...keys];
+    if(got && !renderKeys.includes(got)) renderKeys.push(got);
+  }
+  return renderKeys.map(key=>{
+    const p=practicePointForKey(key, step);
+    const roles=rolesMap[key] || [];
+    const isLegAnswer=(step.type==="safe" && step.after!==8);
+    const highlight=practiceHighlightKindForRoles(roles, step);
+    const cls=["practicePos","answerOverlay", roles.length?"showAllRoleLabel":"", key===expected?"correct":"", got===key?"selected":"", got===key && key!==expected?"wrong":"", highlight==="self"?"answerSelfPosition":"", highlight==="partner"?"answerPartnerPosition":""].filter(Boolean).join(" ");
+    let content="";
+    if(roles.length){
+      content=`<span class="practiceRoleLabel">${roleLabelHTML(roles)}</span>`;
+    }else if(isLegAnswer){
+      content=`<span class="practicePointLabel" style="display:block;">脚：${hardPointLabel(key).replace(/^脚・/,"")}</span>`;
+    }else{
+      content=`<span class="practicePointLabel" style="display:block;">${hardPointLabel(key)}</span>`;
+    }
+    return `<div class="${cls}" style="left:${p.x}%;top:${p.y}%">${content}</div>`;
+  }).join("");
+}
+function renderPracticePanel(){
+  const panel=document.getElementById("practicePanel");
+  if(!panel) return;
+  if(state.difficulty!=="practice"){ panel.classList.add("hidden"); panel.innerHTML=""; return; }
+  panel.classList.remove("hidden");
+  const pr=state.practice, phases=practicePhases();
+  const step=phases[Math.min(pr.phaseIndex, phases.length-1)] || null;
+  const now=performance.now();
+  const answerVisible = !!(pr.answerStep && now < (pr.answerUntil||0));
+  const displayStep = answerVisible ? pr.answerStep : step;
+  const towerBar=practiceTowerBarPercent(step);
+  const safeBar=practiceSafeBarPercent(step);
+  const opts=practiceOptions(step);
+  const towers=(displayStep?practiceTowerCenters(displayStep):[]).map(p=>`<div class="practiceTower" style="left:${p.x}%;top:${p.y}%;"></div>`).join("");
+  const finalStage = (step?.type==="safe" && step.after===8) ? practiceFinalStage(step, now) : "normal";
+  const selectedNow=(step?.type==="safe" && step.after===8)
+    ? (finalStage==="gather" ? pr.finalGatherSelected : pr.finalAvoidSelected)
+    : pr.selected;
+  const buttons=((pr.phaseMode==="summary") || answerVisible) ? "" : opts.map(key=>{
+    const p=practicePointForKey(key, step);
+    const cls=["practicePos", selectedNow===key ? "selected" : ""].filter(Boolean).join(" ");
+    return `<button type="button" class="${cls}" title="${hardPointLabel(key)}" aria-label="${hardPointLabel(key)}" style="left:${p.x}%;top:${p.y}%" onpointerdown="event.preventDefault();choosePractice('${key}')"><span class="practicePointLabel">${hardPointLabel(key)}</span></button>`;
+  }).join("");
+  let overlay="";
+  if(pr.phaseMode==="countdown"){
+    const remain=3-Math.floor((now-pr.countdownStartedAt)/1000);
+    overlay+=`<div class="practiceCountdown">${Math.max(1,remain)}</div>`;
+  }
+  if(pr.lastResult && now < pr.resultUntil){
+    overlay+=`<div class="practiceResultOverlay ${pr.lastResult==="正解"?"good":"bad"}">${pr.lastResult}</div>`;
+  }
+  if(step && pr.phaseMode==="phase"){
+    const elapsed=now-pr.phaseStartedAt;
+    if(step.type==="tower" && step.round%2===0 && elapsed>=1000 && elapsed<5500){
+      overlay+=`<div class="practiceCastOverlay">詠唱：<b>${endLabel(state.problem.endTypes[step.round])}</b></div>`;
+    }
+  }
+  if(pr.phaseMode==="idle" && !pr.running && !pr.summaryVisible){
+    overlay+=`<button type="button" class="practiceCenterStartBtn" onpointerdown="event.preventDefault();practiceStart()">スタート</button>`;
+  }
+  const logHtml=pr.logs.length ? pr.logs.map((l,i)=>`<div class="practiceLogItem"><span>${i+1}. ${l.title}<br><span class="${l.ok?"ok":"ng"}">${l.ok?"正解":"不正解"}</span> / 選択：${l.got}</span><span>正解：${l.expected}</span></div>`).join("") : `<div class="small">まだ記録はありません。</div>`;
+  const summaryHtml=pr.summaryVisible ? `<div class="practiceRunSummaryOverlay"><div class="practiceRunSummaryTitle">通しログ</div><div class="practiceRunSummaryGrid">${pr.logs.map((l,i)=>`<div class="practiceRunSummaryItem"><span class="idx">${i+1}. ${l.title}</span><br><span class="${l.ok?"ok":"ng"}">${l.ok?"正解":"不正解"}</span><br>選択：${l.got}<br>正解：${l.expected}</div>`).join("")}</div><div class="practiceRunSummaryHint">${pr.mode==="continuous"?"連続モードの場合、3秒後に次の問題を開始します。":"次の問題を始めるまでこのログを表示します。"}</div></div>` : "";
+  const title=step ? practicePhaseTitle(step) : (pr.summaryVisible ? "実戦練習：通し結果" : "実戦練習");
+  panel.innerHTML=`
+    <div class="practiceModeToggle">
+      <button type="button" class="${pr.mode==="continuous"?"active":""}" onpointerdown="event.preventDefault();practiceSetMode('continuous')">連続モード</button>
+      <button type="button" class="${pr.mode==="single"?"active":""}" onpointerdown="event.preventDefault();practiceSetMode('single')">一問ごとモード</button>
+    </div>
+    <div class="practiceControls">
+      <button type="button" class="primary practiceStartBtn" onpointerdown="event.preventDefault();practiceStart()">スタート</button>
+      <button type="button" onpointerdown="event.preventDefault();practicePause()">${pr.paused?"再開":"一時停止"}</button>
+      <button type="button" onpointerdown="event.preventDefault();practiceNextProblem()">次の問題</button>
+      <button type="button" onpointerdown="event.preventDefault();practiceRetry()">同じ問題をもう一度</button>
+      <button type="button" onpointerdown="event.preventDefault();practicePrevProblem()">一問前に戻る</button>
+      <label class="practiceFixedTowerLabel"><input type="checkbox" ${pr.fixedTower?"checked":""} onchange="practiceSetFixedTower(this.checked)">塔の位置を固定</label>
+    </div>
+    <div class="practiceShell">
+      <div class="practiceStage">
+        <div class="practiceHeader"><div class="practiceTitle">${title}</div><div class="practiceHeaderRight"><button type="button" class="slideNavBtn" onpointerdown="event.preventDefault();practiceJumpSlide(-1)" ${pr.phaseIndex>0?"":"disabled"}><span>＜</span></button><button type="button" class="slideNavBtn" onpointerdown="event.preventDefault();practiceJumpSlide(1)" ${pr.phaseIndex<phases.length-1?"":"disabled"}><span>＞</span></button><div class="practiceSub">${Math.min(pr.phaseIndex+1,phases.length)} / ${phases.length}</div></div></div>
+        <div class="practiceBars">
+          <div class="practiceBarBox"><div class="practiceBarLabel">塔踏みまで</div><div class="practiceBarTrack"><div class="practiceBarFill" style="width:${towerBar}%"></div></div></div>
+          <div class="practiceBarBox"><div class="practiceBarLabel">消滅の脚まで</div><div class="practiceBarTrack"><div class="practiceBarFill" style="width:${safeBar}%"></div></div></div>
+        </div>
+        <div class="practiceArena">
+          <div class="practiceMapSquare">
+            <div class="practiceNorthLabel">A / 北</div>
+            <div class="practiceBossRing"></div>
+            ${towers}
+            ${buttons}
+            ${practiceCarryAnswerOverlayHTML(step, now)}
+            ${practiceAnswerOverlayHTML(now)}
+            ${overlay}
+            ${summaryHtml}
+          </div>
+          ${practiceMarksOverlayHTML(step)}
+        </div>
+      </div>
+      <div class="practiceLog">
+        <div class="practiceLogTitle">通しログ</div>
+        ${logHtml}
+      </div>
+    </div>`;
+}
+window.practiceStart=practiceStart;
+window.practicePause=practicePause;
+window.practiceNextProblem=practiceNextProblem;
+window.practiceRetry=practiceRetry;
+window.practicePrevProblem=practicePrevProblem;
+window.practiceJumpSlide=practiceJumpSlide;
+window.practiceSetMode=practiceSetMode;
+window.practiceSetFixedTower=practiceSetFixedTower;
+window.practiceStart=practiceStart;
+window.practicePause=practicePause;
+window.practiceNextProblem=practiceNextProblem;
+window.practiceRetry=practiceRetry;
+window.practicePrevProblem=practicePrevProblem;
+window.practiceJumpSlide=practiceJumpSlide;
+window.practiceSetMode=practiceSetMode;
+
 
 function check(){
   if(state.difficulty === "hard"){ checkHardCurrent(); return; }
@@ -1167,7 +2074,7 @@ function setResult(html, cls){const r=document.getElementById("result"); r.inner
 function saveStats(){localStorage.setItem("missingNormalCombinedStats", JSON.stringify(state.stats));}
 
 document.querySelectorAll(".methodBtn").forEach(btn=>{btn.onclick=()=>{state.method=btn.dataset.method; localStorage.setItem("missingMethod", state.method); newProblem();};});
-document.querySelectorAll(".difficultyBtn").forEach(btn=>{btn.onclick=()=>{state.difficulty=btn.dataset.difficulty; localStorage.setItem("missingDifficulty", state.difficulty); state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; state.hardShowAllPositions=false; renderAll(); setResult(`難易度を${state.difficulty==="hard"?"ハード":"ノーマル"}に切り替えました。`, "");};});
+document.querySelectorAll(".difficultyBtn").forEach(btn=>{btn.onclick=()=>{state.difficulty=btn.dataset.difficulty; localStorage.setItem("missingDifficulty", state.difficulty); state.answers={}; state.hardStep=0; state.hardSelected=null; state.hardChecked=false; state.hardHistory=[]; state.hardShowAllPositions=false; stopPracticeTimer(); renderAll(); setResult(`モードを${state.difficulty==="hard"?"位置確認":state.difficulty==="practice"?"実戦練習":"ギミック理解"}に切り替えました。`, "");};});
 document.getElementById("newBtn").onclick=newProblem;
 document.getElementById("retryBtn").onclick=retry;
 const checkBtn=document.getElementById("checkBtn"); if(checkBtn) checkBtn.onclick=check;
